@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   output.c                                           :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 13:42:09 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/16 15:51:38 by jgo              ###   ########.fr       */
+/*   Created: 2023/03/16 13:48:28 by jgo               #+#    #+#             */
+/*   Updated: 2023/03/16 14:33:10 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "defines.h"
 
-static char *get_state_msg(t_state state)
+// 1 초(second) = 1,000 밀리초(millisecond) = 1,000,000 마이크로초(microsecond)
+//  마이크로초와 밀리초는 1,000배 관계이며, 밀리초와 초는 1,000배 관계입니다. 
+uint64_t get_ms_time(void)
 {
-	if (state == FORK)
-		return (FORK_MSG);
-    else if (state == EAT)
-		return (EAT_MSG);
-	else if (state == SLEEP)
-		return (SLEEP_MSG);
-	else if (state == THINK)
-		return (THINK_MSG);
-	return (DIED_MSG);
-}
+	static struct timeval	tv;
 
-void    output(uint64_t time, int num ,t_state state)
-{
-	// lock
-    printf("%llu %d %s", time, X, get_state_msg(state));
-	// unlock
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * (uint64_t)1000) + (tv.tv_usec / 1000));
 }

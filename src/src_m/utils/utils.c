@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/16 15:30:56 by jgo              ###   ########.fr       */
+/*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
+/*   Updated: 2023/03/16 15:33:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include "defines.h"
-#include "utils.h"
-
-// number_of_philosophers
-// time_to_die
-// time_to_eat
-// time_to_sleep
-// number_of_times_each_philosopher_must_eat
-int main(int ac, char **av)
+int	ft_atoi(const char *str)
 {
-	t_meta meta;
+	long long	result;
+	int			sign;
+	int			i;
 
-	if (ac < 5 || 6 < ac)
-		return (prt_err(ERR_ARGS));
-	init(&meta, ac, av);
-
-	return (0);
+	result = 0;
+	sign = 1;
+	i = 0;
+	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (str[i] && '0' <= str[i] && str[i] <= '9')
+		result = result * 10 + str[i++] - '0';
+	return (result * sign);
 }

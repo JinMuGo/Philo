@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/16 15:30:56 by jgo              ###   ########.fr       */
+/*   Created: 2023/03/16 14:33:47 by jgo               #+#    #+#             */
+/*   Updated: 2023/03/16 15:35:55 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include "defines.h"
-#include "utils.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-// number_of_philosophers
-// time_to_die
-// time_to_eat
-// time_to_sleep
-// number_of_times_each_philosopher_must_eat
-int main(int ac, char **av)
-{
-	t_meta meta;
+/* init.c */
+t_bool init(t_meta *meta, int ac, char **av);
 
-	if (ac < 5 || 6 < ac)
-		return (prt_err(ERR_ARGS));
-	init(&meta, ac, av);
+/* error.c */
+int prt_err(t_err err_num);
 
-	return (0);
-}
+/* time.c */
+uint64_t get_ms_time(void);
+
+/* utils.c */
+int	ft_atoi(const char *str);
+
+#endif

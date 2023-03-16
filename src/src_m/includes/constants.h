@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/16 15:30:56 by jgo              ###   ########.fr       */
+/*   Created: 2023/03/16 14:59:01 by jgo               #+#    #+#             */
+/*   Updated: 2023/03/16 16:27:46 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include "defines.h"
-#include "utils.h"
+#ifndef CONSTANTS_H
+# define CONSTANTS_H
 
-// number_of_philosophers
-// time_to_die
-// time_to_eat
-// time_to_sleep
-// number_of_times_each_philosopher_must_eat
-int main(int ac, char **av)
-{
-	t_meta meta;
 
-	if (ac < 5 || 6 < ac)
-		return (prt_err(ERR_ARGS));
-	init(&meta, ac, av);
+# define LEFT 0
+# define RIGHT 1
 
-	return (0);
-}
+/* output.c */
+# define FORK_MSG "has taken a fork\n"
+# define EAT_MSG "is eating\n"
+# define SLEEP_MSG "is sleeping\n"
+# define THINK_MSG "is thinking\n"
+# define DIED_MSG "died\n"
+
+/* error.c */
+# define ERR_ARGS_MSG "❌ Incorrect number of arguments\n"
+# define ERR_ALLOC_MSG "❌ Memory allocation failed"
+
+
+#endif

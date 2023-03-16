@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   enum.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/16 15:30:56 by jgo              ###   ########.fr       */
+/*   Created: 2023/03/16 15:12:47 by jgo               #+#    #+#             */
+/*   Updated: 2023/03/16 16:23:24 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include "defines.h"
-#include "utils.h"
+#ifndef ENUM_H
+# define ENUM_H
 
-// number_of_philosophers
-// time_to_die
-// time_to_eat
-// time_to_sleep
-// number_of_times_each_philosopher_must_eat
-int main(int ac, char **av)
+typedef enum e_state t_state;
+typedef enum e_err   t_err;
+typedef enum e_bool  t_bool;
+
+enum e_state
 {
-	t_meta meta;
+	INIT,
+	FORK,
+	EAT,
+	SLEEP,
+	THINK,
+	DIED
+};
 
-	if (ac < 5 || 6 < ac)
-		return (prt_err(ERR_ARGS));
-	init(&meta, ac, av);
+enum e_err
+{
+	ERR_ARGS,
+	ERR_ALLOC
+};
 
-	return (0);
-}
+enum e_bool
+{
+	TRUE,
+	FALSE
+};
+
+#endif
