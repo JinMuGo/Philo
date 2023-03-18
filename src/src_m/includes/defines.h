@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:43:05 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/16 16:32:01 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/18 10:44:32 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,20 @@ struct s_meta
 	uint64_t		time_to_sleep;
 	int				num_of_must_eat;
 	t_philo			*philos;
+	int				*forks;
 	pthread_mutex_t	*mt_forks;
+	pthread_mutex_t	mt_start;
 	pthread_mutex_t	mt_write;
 	pthread_mutex_t	mt_dead;
 };
 
 struct s_philo
 {
-	int	num;
-	t_state state;
-	t_bool fork[2];
-	int	eat_cnt;
-	uint64_t start_time;
+	int			num;
+	t_state		state;
+	t_bool		fork[2];
+	int			eat_cnt;
+	uint64_t	start_time;
 };
 
 #endif

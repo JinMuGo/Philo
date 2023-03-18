@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:12:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/16 16:23:24 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/18 10:27:19 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ enum e_state
 enum e_err
 {
 	ERR_ARGS,
-	ERR_ALLOC
+	ERR_ALLOC,
+	ERR_INIT_PHILO,
 };
 
 enum e_bool

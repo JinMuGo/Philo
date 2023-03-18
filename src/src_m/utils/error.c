@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:52:05 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/16 16:07:25 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/18 10:26:45 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 t_bool prt_err(t_err err_num)
 {
-	char *msg 
+	char *msg;
 
 	if (err_num == ERR_ARGS)
 		msg = ERR_ARGS_MSG;
@@ -25,3 +25,16 @@ t_bool prt_err(t_err err_num)
 	return (FALSE);
 }
 
+t_bool	sc_err(int rv)
+{
+	if (rv)
+		return (FALSE);
+	return (TRUE);
+}
+
+t_bool output_err(int rv)
+{
+	if (rv < 0)
+		return (FALSE);
+	return (TRUE);
+}

@@ -6,9 +6,12 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/16 15:33:38 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/18 10:50:04 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "philo.h"
+#include "defines.h"
 
 int	ft_atoi(const char *str)
 {
@@ -30,4 +33,9 @@ int	ft_atoi(const char *str)
 	while (str[i] && '0' <= str[i] && str[i] <= '9')
 		result = result * 10 + str[i++] - '0';
 	return (result * sign);
+}
+
+void	clear_all_asset(t_meta *meta)
+{
+	
 }

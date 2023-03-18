@@ -6,14 +6,15 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:56:59 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/16 14:59:28 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/18 10:57:57 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-
-
+t_bool	prt_sc_err(int rv);
+t_bool	sc_err(int rv);
+t_bool output_err(int rv);
 
 #endif

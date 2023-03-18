@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:59:01 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/16 16:27:46 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/18 10:35:40 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,19 @@
 # define DIED_MSG "died\n"
 
 /* error.c */
-# define ERR_ARGS_MSG "❌ Incorrect number of arguments\n"
+# define ERR_ARGS_MSG "❌ Incorrect number of arguments"
 # define ERR_ALLOC_MSG "❌ Memory allocation failed"
+# define ERR_INIT_PHILO_MSG "❌ error occured during philosopher initialized"
+
+/* color */
+# define BOLD "\e[1m"
+# define MAGENTA "\e[35m"
+# define CYAN "\e[36m"
+# define GREEN "\e[92m"
+# define GRAY "\e[90m"
+# define RED "\e[91m"
+# define BLUE "\e[94m"
+# define RESET "\e[0m"
 
 
 #endif
