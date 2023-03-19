@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 20:10:46 by jgo               #+#    #+#              #
-#    Updated: 2023/03/19 10:13:20 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/19 13:26:58 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,4 +19,10 @@ all bonus clean fclean re:
 $(NAME):
 	$(MAKE) TOPDIR=`pwd` -C src $@
 
-.PHONY: all clean fclean re bonus
+norm:
+	@norminette ./src/
+
+leaks: all
+	leaks ./$(NAME)
+
+.PHONY: all clean fclean re bonus norm leaks

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:10:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/19 11:02:18 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/19 14:23:50 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,19 @@ static t_bool init_mutex(t_meta *meta)
 
 static t_bool init_table(int num_of_philo, t_philo *philos, int	*forks)
 {
-	const uint64_t start_time = get_ms_time();
+	const uint64_t begin_time = get_ms_time();
 	int	i;
 
-	if (start_time == 0)
-		return (FALSE);
 	i = -1;
 	while (++i < num_of_philo)
 	{
-		forks[i] = i;
+		forks[i] = ON_TABLE;
 		philos[i].num = i;
 		philos[i].state = PHILO_INIT;
 		philos[i].fork[LEFT] = FALSE;
 		philos[i].fork[RIGHT] = FALSE;
 		philos[i].eat_cnt = 0;
-		philos[i].start_time = start_time;
+		philos[i].last_meal = begin_time;
 	}
 	return (TRUE);
 }
@@ -75,8 +73,7 @@ t_bool init(t_meta *meta, int ac, char **av)
 	meta->forks = malloc(sizeof(int) * (meta->num_of_philo));
 	if (meta->forks == NULL)
 		return (prt_err(ERR_ALLOC));
-	if (init_table(meta->num_of_philo, meta->philos, meta->forks))
-		return (prt_err(ERR_INIT_PHILO));
+	init_table(meta->num_of_philo, meta->philos, meta->forks);
 	if (init_mutex(meta))
 		return (prt_err(ERR_INIT_MUTEX));
 	return (TRUE);

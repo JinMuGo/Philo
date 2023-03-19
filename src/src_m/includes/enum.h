@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:12:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/19 10:54:54 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/19 13:59:30 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ enum e_philo_state
 	PHILO_THINK,
 	PHILO_DIED
 };
+
+enum e_fork_state
+{
+	ON_TABLE,
+	SOMEONE_USE
+}
 
 enum e_err
 {
