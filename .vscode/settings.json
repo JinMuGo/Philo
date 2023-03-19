@@ -9,6 +9,7 @@
         "locale": "c",
         "ostream": "c",
         "philo.h": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "error.h": "c"
     }
 }

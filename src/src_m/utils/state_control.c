@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   state_control.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 14:52:05 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/18 10:26:45 by jgo              ###   ########.fr       */
+/*   Created: 2023/03/19 10:46:23 by jgo               #+#    #+#             */
+/*   Updated: 2023/03/19 11:01:08 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "defines.h"
 
-t_bool prt_err(t_err err_num)
+static t_proc_state proc_state_receiver(t_state_flag flag, t_proc_state arg)
 {
-	char *msg;
+	static t_proc_state state;
 
-	if (err_num == ERR_ARGS)
-		msg = ERR_ARGS_MSG;
-	if (err_num == ERR_ALLOC)
-		msg = ERR_ALLOC_MSG;
-	printf("%s\n", msg);
-	return (FALSE);
+	if (flag == GET)
+		return (state);
+	if (flag == SET)
+		state = arg;
+	return (state);
 }
 
-t_bool	sc_err(int rv)
+t_proc_state get_proc_state()
 {
-	if (rv)
-		return (FALSE);
-	return (TRUE);
+	return (proc_state_receiver(GET, -1));
 }
 
-t_bool output_err(int rv)
+void set_proc_state(t_proc_state arg)
 {
-	if (rv < 0)
-		return (FALSE);
-	return (TRUE);
+	proc_state_receiver(SET, arg);
 }

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:59:01 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/18 10:35:40 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/19 10:08:47 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@
 
 /* error.c */
 # define ERR_ARGS_MSG "❌ Incorrect number of arguments"
+# define ERR_INVALID_ARGS_MSG "❌ Invalid arguments"
 # define ERR_ALLOC_MSG "❌ Memory allocation failed"
 # define ERR_INIT_PHILO_MSG "❌ error occured during philosopher initialized"
+# define ERR_INIT_MUTEX_MSG "❌ error occured during mutex initialized"
 
 /* color */
 # define BOLD "\e[1m"

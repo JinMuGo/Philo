@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/05 14:02:20 by jgo               #+#    #+#              #
-#    Updated: 2023/03/15 15:53:47 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/19 10:21:44 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CPPFLAGS = -I$(TOPDIR)/includes -I$(TOPDIR)/src/src_m/includes
 
 # debug
 ifdef DEBUG
-	CFLAGS = -g3 -MMD -MP -fsanitize=address
+	CFLAGS = -g3 -MMD -MP
 	LDFLAGS += -g3
 endif
 

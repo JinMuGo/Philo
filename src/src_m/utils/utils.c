@@ -6,19 +6,22 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/18 10:50:04 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/19 11:03:23 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "defines.h"
+#include "state_control.h"
 
-int	ft_atoi(const char *str)
+uint64_t	char_to_uint64(const char *str)
 {
-	long long	result;
+	uint64_t	result;
 	int			sign;
 	int			i;
 
+	if (get_proc_state() == PROC_ERROR)
+		return (0);
 	result = 0;
 	sign = 1;
 	i = 0;
@@ -32,10 +35,21 @@ int	ft_atoi(const char *str)
 	}
 	while (str[i] && '0' <= str[i] && str[i] <= '9')
 		result = result * 10 + str[i++] - '0';
-	return (result * sign);
+	if (sign == -1)
+	{
+		set_proc_state(PROC_ERROR);
+		return (0);
+	}
+	return (result);
 }
 
-void	clear_all_asset(t_meta *meta)
+t_bool	check_args(t_meta *meta)
 {
-	
+	printf("%d\n",(meta->num_of_philo >= 0 & meta->time_to_die >= 0 & meta->time_to_eat >= 0 &	meta->time_to_sleep >= 0));
+	return (TRUE);
 }
+
+// void	clear_all_asset(t_meta *meta)
+// {
+	
+// }

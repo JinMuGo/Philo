@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/03/15 15:54:09 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/19 10:59:42 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,18 @@ NAME = $(PROJECT_NAME)
 
 CPPFLAGS = -I$(TOPDIR)/includes -I./includes
 
-DIRS = utils methods
+DIRS = utils error
 LIBS = $(addsuffix .a, $(addprefix lib/, $(DIRS)))
 
-HEADS = 
+HEADS = constants.h \
+		defines.h \
+		enum.h \
+		error.h \
+		philo.h \
+		utils.h \
+		state_control.h
 
-SRCS = 
+SRCS = main.c
 
 OBJS = $(SRCS:.c=.o)
 DEPS = $(SRCS:.c=.d)

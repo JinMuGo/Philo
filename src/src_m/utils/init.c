@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:10:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/18 11:03:02 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/19 11:02:18 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,25 @@
 #include "defines.h"
 #include "utils.h"
 #include "error.h"
+#include "state_control.h"
 
 static t_bool init_mutex(t_meta *meta)
 {
-	if (sc_err(pthread_mutex_init(&meta->mt_write, NULL)))
+	int	i;
+
+	if (sc_err(pthread_mutex_init(&meta->write_mt, NULL)))
 		return (FALSE);
-	if (sc_err(pthread_mutex_init(&meta->mt_dead, NULL)))
+	if (sc_err(pthread_mutex_init(&meta->dead_mt, NULL)))
 		return (FALSE);
-	if (sc_err(pthread_mutex_init(&meta->mt_start, NULL))) // ? 이건 내 로직에서 필요 없을 수도? thead가 생성되고 동시에 시작하게 하기 위해서 설정하는 건데 
+	if (sc_err(pthread_mutex_init(&meta->start_mt, NULL))) // ? 이건 내 로직에서 필요 없을 수도? thead가 생성되고 동시에 시작하게 하기 위해서 설정하는 건데 
 		return (FALSE);
-	
-	
+	i = -1;
+	while (++i < meta->num_of_philo)
+	{
+		if (sc_err(pthread_mutex_init(&meta->forks_mt[i], NULL)))
+			return (FALSE);
+	}
+	return (TRUE);
 }
 
 static t_bool init_table(int num_of_philo, t_philo *philos, int	*forks)
@@ -39,7 +47,7 @@ static t_bool init_table(int num_of_philo, t_philo *philos, int	*forks)
 	{
 		forks[i] = i;
 		philos[i].num = i;
-		philos[i].state = INIT;
+		philos[i].state = PHILO_INIT;
 		philos[i].fork[LEFT] = FALSE;
 		philos[i].fork[RIGHT] = FALSE;
 		philos[i].eat_cnt = 0;
@@ -50,14 +58,17 @@ static t_bool init_table(int num_of_philo, t_philo *philos, int	*forks)
 
 t_bool init(t_meta *meta, int ac, char **av)
 {
-	meta->num_of_philo = ft_atoi(av[1]);
-	meta->time_to_die = ft_atoi(av[2]);
-	meta->time_to_eat = ft_atoi(av[3]);
-	meta->time_to_sleep = ft_atoi(av[4]);
+
+	meta->num_of_philo = char_to_uint64(av[1]);
+	meta->time_to_die = char_to_uint64(av[2]);
+	meta->time_to_eat = char_to_uint64(av[3]);
+	meta->time_to_sleep = char_to_uint64(av[4]);
 	if (ac == 6)
-		meta->num_of_must_eat = ft_atoi(av[5]);
+		meta->num_of_must_eat = char_to_uint64(av[5]);
 	else
 		meta->num_of_must_eat = 0;
+	if(get_proc_state() == PROC_ERROR)
+		return (prt_err(ERR_INVALID_ARGS));
 	meta->philos = malloc(sizeof(t_philo) * (meta->num_of_philo));
 	if (meta->philos == NULL)
 		return (prt_err(ERR_ALLOC));
@@ -67,5 +78,6 @@ t_bool init(t_meta *meta, int ac, char **av)
 	if (init_table(meta->num_of_philo, meta->philos, meta->forks))
 		return (prt_err(ERR_INIT_PHILO));
 	if (init_mutex(meta))
+		return (prt_err(ERR_INIT_MUTEX));
 	return (TRUE);
 }

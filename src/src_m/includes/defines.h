@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:43:05 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/18 10:44:32 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/19 10:33:59 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 typedef struct s_meta t_meta;
 typedef struct s_philo t_philo;
+typedef struct s_state	t_state;
 
 struct s_meta
 {
@@ -28,16 +29,22 @@ struct s_meta
 	int				num_of_must_eat;
 	t_philo			*philos;
 	int				*forks;
-	pthread_mutex_t	*mt_forks;
-	pthread_mutex_t	mt_start;
-	pthread_mutex_t	mt_write;
-	pthread_mutex_t	mt_dead;
+	pthread_mutex_t	*forks_mt;
+	pthread_mutex_t	start_mt;
+	pthread_mutex_t	write_mt;
+	pthread_mutex_t	dead_mt;
 };
+
+struct s_state
+{
+	t_proc_state state;
+};
+
 
 struct s_philo
 {
 	int			num;
-	t_state		state;
+	t_philo_state		state;
 	t_bool		fork[2];
 	int			eat_cnt;
 	uint64_t	start_time;
