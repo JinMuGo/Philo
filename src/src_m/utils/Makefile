@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/19 10:59:35 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/21 11:33:12 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS = init.c \
 		output.c \
 		time.c \
 		utils.c \
-		state_control.c
+		state_control.c \
+		make_philo.c
 
 NAME = utils.a
 

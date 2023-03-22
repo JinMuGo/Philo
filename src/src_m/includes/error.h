@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   err.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef ERR_H
+# define ERR_H
 
-t_bool prt_err(t_err err_num);
-t_bool	sc_err(int rv);
-t_bool output_err(int rv);
+bool prt_err(t_err err_num);
+bool	sc_err(int rv);
+bool output_err(int rv);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:48:28 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/19 10:19:27 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/21 11:43:19 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "defines.h"
-#include "error.h"
+#include "def.h"
+#include "err.h"
 
 // 1 초(second) = 1,000 밀리초(millisecond) = 1,000,000 마이크로초(microsecond)
 //  마이크로초와 밀리초는 1,000배 관계이며, 밀리초와 초는 1,000배 관계입니다. 

@@ -6,14 +6,14 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/19 14:09:50 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/21 11:43:19 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "defines.h"
+#include "def.h"
 #include "utils.h"
-#include "error.h"
+#include "err.h"
 
 // number_of_philosophers
 // time_to_die
@@ -29,7 +29,10 @@ int main(int ac, char **av)
 		return (prt_err(ERR_ARGS));
 	if (init(&meta, ac, av))
 		return (EXIT_FAILURE);
-	begin_life(&meta);
+	// if (make_philo(&meta))
+	// 	return (EXIT_FAILURE);
+		
+	
 
 	return (EXIT_SUCCESS);
 }

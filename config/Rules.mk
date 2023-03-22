@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/05 14:02:20 by jgo               #+#    #+#              #
-#    Updated: 2023/03/19 10:21:44 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/20 14:40:09 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ CFLAGS = -Wall -Wextra -Werror -MMD -MP
 Q := $(if $(filter 1,$(V) $(VERBOSE)),,@)
 
 CPPFLAGS = -I$(TOPDIR)/includes -I$(TOPDIR)/src/src_m/includes
+LDFLAGS = -lpthread
 
 # debug
 ifdef DEBUG

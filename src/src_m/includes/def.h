@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   def.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:43:05 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/19 14:13:24 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/21 11:35:50 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#ifndef DEF_H
+# define DEF_H
 
 #include "enum.h"
-#include "constants.h"
+#include "const.h"
 
 typedef struct s_meta t_meta;
 typedef struct s_philo t_philo;
@@ -27,8 +27,10 @@ struct s_meta
 	uint64_t		time_to_eat;
 	uint64_t		time_to_sleep;
 	int				num_of_must_eat;
+	bool			someone_dead;
 	t_philo			*philos;
-	t_bool			*forks;
+	t_fork_state	*forks;
+	pthread_t		*tids;
 	pthread_mutex_t	*forks_mt;
 	pthread_mutex_t	start_mt;
 	pthread_mutex_t	write_mt;
@@ -45,7 +47,7 @@ struct s_philo
 {
 	int			num;
 	t_philo_state		state;
-	t_bool		fork[2];
+	bool		fork[2];
 	int			eat_cnt;
 	uint64_t	last_meal;
 };

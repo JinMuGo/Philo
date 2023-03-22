@@ -6,12 +6,12 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 10:46:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/19 11:01:08 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/21 11:42:52 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "defines.h"
+#include "def.h"
 
 static t_proc_state proc_state_receiver(t_state_flag flag, t_proc_state arg)
 {

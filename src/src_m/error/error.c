@@ -6,14 +6,14 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:52:05 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/19 10:45:44 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/22 11:17:01 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "defines.h"
+#include "def.h"
 
-t_bool prt_err(t_err err_num)
+bool prt_err(t_err err_num)
 {
 	char *msg;
 
@@ -29,19 +29,19 @@ t_bool prt_err(t_err err_num)
 	else if (err_num == ERR_INIT_MUTEX)
 		msg = ERR_INIT_MUTEX_MSG;
 	printf("%s\n", msg);
-	return (FALSE);
+	return (false);
 }
 
-t_bool	sc_err(int rv)
+bool	sc_err(int rv)
 {
 	if (rv)
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }
 
-t_bool output_err(int rv)
+bool output_err(int rv)
 {
 	if (rv < 0)
-		return (FALSE);
-	return (TRUE);
+		return (false);
+	return (true);
 }

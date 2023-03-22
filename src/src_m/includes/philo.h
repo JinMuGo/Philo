@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:35:44 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/16 13:40:40 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/22 11:17:15 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 #include <unistd.h>
 #include <sys/time.h>
 #include <pthread.h>
+#include <stdbool.h>
 
 #endif

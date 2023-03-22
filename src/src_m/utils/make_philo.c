@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   begin_life.c                                       :+:      :+:    :+:   */
+/*   make_philo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 14:06:24 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/21 11:43:19 by jgo              ###   ########.fr       */
+/*   Created: 2023/03/20 15:17:15 by jgo               #+#    #+#             */
+/*   Updated: 2023/03/22 11:16:54 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "def.h"
-#include "utils.h"
-#include "err.h"
+#include "life.h"
 
-void *begin_life(void *philo_arg)
+bool make_philo(t_meta *meta)
 {
-	const t_philo *philo = philo_arg;
-	
-	
+	int	i;
+
+	i = 0;
+	pthread_mutex_lock(&meta->start_mt);
+	while (i < meta->num_of_philo)
+	{
+		pthread_create(&meta->tids[i], NULL, begin_life, &meta->philos[i]);
+		
+		i++;
+	}
+	pthread_mutex_unlock(&meta->start_mt);
+	return (true);
 }

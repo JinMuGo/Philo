@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   begin_life.c                                       :+:      :+:    :+:   */
+/*   life.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 14:06:24 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/21 11:43:19 by jgo              ###   ########.fr       */
+/*   Created: 2023/03/20 15:07:46 by jgo               #+#    #+#             */
+/*   Updated: 2023/03/20 15:45:21 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include "def.h"
-#include "utils.h"
-#include "err.h"
+#ifndef LIFE_H
+# define LIFE_H
 
-void *begin_life(void *philo_arg)
-{
-	const t_philo *philo = philo_arg;
-	
-	
-}
+void *begin_life(void *philo_arg);
+
+#endif

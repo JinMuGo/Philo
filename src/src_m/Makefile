@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/03/19 10:59:42 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/21 11:44:20 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,10 @@ CPPFLAGS = -I$(TOPDIR)/includes -I./includes
 DIRS = utils error
 LIBS = $(addsuffix .a, $(addprefix lib/, $(DIRS)))
 
-HEADS = constants.h \
-		defines.h \
+HEADS = const.h \
+		def.h \
 		enum.h \
-		error.h \
+		err.h \
 		philo.h \
 		utils.h \
 		state_control.h

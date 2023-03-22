@@ -6,12 +6,12 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:42:09 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/19 11:00:05 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/21 11:42:52 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "defines.h"
+#include "def.h"
 
 static char *get_philo_state_msg(t_philo_state state)
 {

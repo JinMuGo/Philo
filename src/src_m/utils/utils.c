@@ -6,13 +6,18 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/19 11:03:23 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/22 11:16:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "defines.h"
+#include "def.h"
 #include "state_control.h"
+
+static bool ft_isdigit(int c)
+{
+	return ('0' <= c && c <= '9');
+}
 
 uint64_t	char_to_uint64(const char *str)
 {
@@ -33,20 +38,14 @@ uint64_t	char_to_uint64(const char *str)
 			sign *= -1;
 		i++;
 	}
-	while (str[i] && '0' <= str[i] && str[i] <= '9')
+	while (str[i] && ft_isdigit(str[i]))
 		result = result * 10 + str[i++] - '0';
-	if (sign == -1)
+	if (sign == -1 || (str[i] != '\0' && !ft_isdigit(str[i])))
 	{
 		set_proc_state(PROC_ERROR);
 		return (0);
 	}
 	return (result);
-}
-
-t_bool	check_args(t_meta *meta)
-{
-	printf("%d\n",(meta->num_of_philo >= 0 & meta->time_to_die >= 0 & meta->time_to_eat >= 0 &	meta->time_to_sleep >= 0));
-	return (TRUE);
 }
 
 // void	clear_all_asset(t_meta *meta)
