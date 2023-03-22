@@ -11,6 +11,7 @@
         "philo.h": "c",
         "sstream": "c",
         "err.h": "c",
-        "utils.h": "c"
+        "utils.h": "c",
+        "error.h": "c"
     }
 }

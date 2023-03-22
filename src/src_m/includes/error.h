@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERR_H
-# define ERR_H
+#ifndef ERROR_H
+# define ERROR_H
 
 bool prt_err(t_err err_num);
 bool	sc_err(int rv);

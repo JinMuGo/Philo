@@ -6,14 +6,14 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:10:31 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/22 11:17:01 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/22 12:06:01 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "def.h"
 #include "utils.h"
-#include "err.h"
+#include "error.h"
 #include "state_control.h"
 
 static bool init_mutex(t_meta *meta)

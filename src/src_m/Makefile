@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/03/21 11:44:20 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/22 12:05:50 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ LIBS = $(addsuffix .a, $(addprefix lib/, $(DIRS)))
 HEADS = const.h \
 		def.h \
 		enum.h \
-		err.h \
+		error.h \
 		philo.h \
 		utils.h \
 		state_control.h

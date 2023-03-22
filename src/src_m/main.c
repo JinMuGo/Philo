@@ -6,14 +6,14 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/21 11:43:19 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/22 12:06:06 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "def.h"
 #include "utils.h"
-#include "err.h"
+#include "error.h"
 
 // number_of_philosophers
 // time_to_die
