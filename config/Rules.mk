@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/05 14:02:20 by jgo               #+#    #+#              #
-#    Updated: 2023/03/22 19:51:12 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/23 14:56:11 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,20 @@
 
 PROJECT_NAME = philo
 
+MANDATORY_DIR = philo
+BONUS_DIR = philo_bonus
+
+MANDATORY_LIB_DIR = src/$(MANDATORY_DIR)/lib
+BONUS_LIB_DIR = src/$(BONUD_DIR)/lib
+
 ARFLAGS = rcs
 CFLAGS = -Wall -Wextra -Werror -MMD -MP
 
+CPPFLAGS = -I$(TOPDIR)/includes $(if $(filter bonus, $(MAKECMDGOALS)), -I$(TOPDIR)/src/$(BONUS_DIR)/includes,-I$(TOPDIR)/src/$(MANDATORY_DIR)/includes)
+LDFLAGS = -lpthread
+
 # verbose
 Q := $(if $(filter 1,$(V) $(VERBOSE)),,@)
-
-CPPFLAGS = -I$(TOPDIR)/includes -I$(TOPDIR)/src/src_m/includes
-LDFLAGS = -lpthread
 
 # debug
 ifdef DEBUG
@@ -40,8 +46,6 @@ ifdef ADDR
 	CFLAGS += -fsanitize=address
 endif
 
-MANDATORY_LIB_DIR = src/src_m/lib
-BONUS_LIB_DIR = src/src_b/lib
 
 link_files:: unlink_files
 	$(Q)$(call color_printf,$(GRAY),includes,📁 make includes folder)

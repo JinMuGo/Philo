@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_meta.h                                         :+:      :+:    :+:   */
+/*   set_meta.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 18:50:49 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/23 11:33:01 by jgo              ###   ########.fr       */
+/*   Created: 2023/03/22 20:17:17 by jgo               #+#    #+#             */
+/*   Updated: 2023/03/23 17:19:31 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	SET_META_H
-# define SET_META_H
+#include "philo.h"
+#include "def.h"
+#include "set_meta.h"
 
-/* set_meta.c */
-void	set_meta(t_meta *meta, int ac, char **av);
-
-/* set_args.c */
-bool	set_args(t_args *args, int ac, char **av);
-
-/* set_table.c */
-bool	set_table(t_table *table, const int num_of_philo);
-
-/* set_mutex.c */
-bool set_mutex(t_mutex *mutex, const int num_of_philo);
-
-/* set_tids.c */
-bool set_tids(pthread_t *tids, const int num_of_philo);
-
-#endif
+void	set_meta(t_meta *meta, int ac, char **av)
+{
+	memset(meta, 0, sizeof(t_meta));
+	set_args(&meta->args, ac, av);
+	set_clerk(&meta->clerk, meta->args.num_of_philo);
+	set_table(&meta->table, meta->args.num_of_philo, meta->clerk->deque);
+	set_mutex(&meta->mutex, meta->args.num_of_philo);
+}

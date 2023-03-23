@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/03/23 11:24:05 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/23 15:17:10 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,22 +17,12 @@ endif
 include $(TOPDIR)/config/Rules.mk
 include $(TOPDIR)/config/color_rules.mk
 
-NAME = $(PROJECT_NAME)
+NAME = philo_bonus
 
-CPPFLAGS = -I$(TOPDIR)/includes -I./includes
+DIRS = 
+LIBS = $(addsuffix _bonus.a, $(addprefix lib/, $(DIRS)))
 
-DIRS = utils error set_meta life
-LIBS = $(addsuffix .a, $(addprefix lib/, $(DIRS)))
-
-HEADS =	def.h \
- 		const.h \
-		enum.h \
-		error.h \
-		philo.h \
-		utils.h \
-		state_control.h \
-		set_meta.h
-
+HEADS =
 SRCS = main.c
 
 OBJS = $(SRCS:.c=.o)
@@ -40,10 +30,10 @@ DEPS = $(SRCS:.c=.d)
 -include $(DEPS)
 
 all bonus :
-		$(Q)$(foreach dir, $(DIRS), $(MAKE) TOPDIR=$(TOPDIR) -C $(dir) $@;)
-		$(Q)$(call color_printf,$(YELLOW),$(FDF),🎯 Start compiling)
-		$(MAKE) $(NAME)
-		$(Q)$(call color_printf,$(GREEN),$(FDF),✨ compiled!)
+	$(Q)$(foreach dir, $(DIRS), $(MAKE) TOPDIR=$(TOPDIR) -C $(dir) $@;)
+	$(Q)$(call color_printf,$(YELLOW),$(NAME),🎯 Start compiling)
+	$(MAKE) $(NAME)
+	$(Q)$(call color_printf,$(GREEN),$(NAME),✨ compiled!)
 
 $(NAME): $(OBJS) $(LIBS)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@

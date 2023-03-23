@@ -16,14 +16,14 @@
 
 ### 구현 생각
 
-supervisor 관찰자
-clerk 서기
-philos 철학자들
+clerk 서기 main thd
+philos 철학자들 philo thd
 
 대기열 thread를 두어서 여러명의 철학자를 관리할 수 있도록 할까? 
 가비지 컬렉터 - 가비지 컬렉터를 thread를 생성해서 계속해서 필요없는 메모리를 해제하도록 하자. 그런데 어떻게 하지?
 
 홀수 일 때 먼저 식사를 시작하게 해야겠다! 왜냐하면 필로소퍼가 하나일 때 처리해야하기 때문에. 
+
 
 philo with n % 2 == 1 will think, eat and sleep.
 philo with n % 2 == 0 will sleep, think and eat.

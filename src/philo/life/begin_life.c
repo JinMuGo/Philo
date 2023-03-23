@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:06:24 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/23 11:44:16 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/23 16:37:51 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void *begin_life(void *philo_arg)
 {
 	const t_philo *philo = philo_arg;
 	
-	printf("hihi\n");
+	
 	
 	return (NULL);
 }

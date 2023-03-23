@@ -3,31 +3,31 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgo <jgo@student.42seoul.kr>               +#+  +:+       +#+         #
+#    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 13:42:33 by jgo               #+#    #+#              #
-#    Updated: 2023/01/05 08:32:01 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/23 14:40:25 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifndef TOPDIR
-		TOPDIR = $(abspath ..)
+		TOPDIR = $(abspath ../)
 endif
 
 include $(TOPDIR)/config/Rules.mk
 include $(TOPDIR)/config/color_rules.mk
 
 bonus :
-	$(MAKE) TOPDIR=$(TOPDIR) -C src_b $@
+	$(MAKE) TOPDIR=$(TOPDIR) -C $(BONUS_DIR) $@
 
 all : 
-	$(MAKE) TOPDIR=$(TOPDIR) -C src_m $@
+	$(MAKE) TOPDIR=$(TOPDIR) -C $(MANDATORY_DIR) $@
 
 clean fclean :
-	$(MAKE) TOPDIR=$(TOPDIR) -C src_m $@
-	$(MAKE) TOPDIR=$(TOPDIR) -C src_b $@
+	$(MAKE) TOPDIR=$(TOPDIR) -C $(MANDATORY_DIR) $@
+# $(MAKE) TOPDIR=$(TOPDIR) -C $(BONUS_DIR) $@
 
 re : fclean
-	$(MAKE) TOPDIR=$(TOPDIR) -C src_m $@
+	$(MAKE) TOPDIR=$(TOPDIR) -C $(MANDATORY_DIR) $@
 
 .PHONY: all clean fclean re bonus

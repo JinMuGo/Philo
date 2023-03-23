@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/22 20:48:52 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/23 17:17:04 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,19 @@
 #include "set_meta.h"
 #include "life.h"
 
-void life_goes_on_until_death()
+void	test_queue(char *msg)
 {
-	
+	if (msg)
+		printf("%s\n", msg);
+}
+
+static void life_goes_on_until_death(bool *someone_dead, t_clerk *clerk)
+{
+	while (!*someone_dead)
+	{
+		test_queue(clerk->deque->pop_front(clerk->deque));
+
+	}
 }
 
 // number_of_philosophers
@@ -35,10 +45,10 @@ int main(int ac, char **av)
 	if (ac < 5 || 6 < ac)
 		return (prt_err(ERR_ARGS, SET_ERROR));
 	set_meta(&meta, ac, av);
-	be_born_philo(&meta);
-	// 	return (EXIT_FAILURE);
-	// life_goes_on_until_death();
 	
-
+	be_born_philo(&meta);
+	life_goes_on_until_death(&meta.someone_dead, &meta.clerk);
+	
+	// garbage_collector();
 	return (EXIT_SUCCESS);
 }
