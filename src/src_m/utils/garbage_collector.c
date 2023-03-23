@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   begin_life.c                                       :+:      :+:    :+:   */
+/*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 14:06:24 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/23 11:44:16 by jgo              ###   ########.fr       */
+/*   Created: 2023/03/22 19:01:34 by jgo               #+#    #+#             */
+/*   Updated: 2023/03/22 19:01:49 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include "def.h"
-#include "utils.h"
-#include "err.h"
-
-void *begin_life(void *philo_arg)
+void	garbage_collector()
 {
-	const t_philo *philo = philo_arg;
 	
-	printf("hihi\n");
-	
-	return (NULL);
 }

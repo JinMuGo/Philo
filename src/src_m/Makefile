@@ -6,12 +6,12 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/03/22 12:05:50 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/23 11:24:05 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifndef TOPDIR
-		TOPDIR = $(abspath ..)
+		TOPDIR = $(abspath ../../)
 endif
 
 include $(TOPDIR)/config/Rules.mk
@@ -21,16 +21,17 @@ NAME = $(PROJECT_NAME)
 
 CPPFLAGS = -I$(TOPDIR)/includes -I./includes
 
-DIRS = utils error
+DIRS = utils error set_meta life
 LIBS = $(addsuffix .a, $(addprefix lib/, $(DIRS)))
 
-HEADS = const.h \
-		def.h \
+HEADS =	def.h \
+ 		const.h \
 		enum.h \
 		error.h \
 		philo.h \
 		utils.h \
-		state_control.h
+		state_control.h \
+		set_meta.h
 
 SRCS = main.c
 

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:12:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/22 11:16:46 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/23 10:54:49 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ typedef enum e_err   t_err;
 
 enum e_proc_state
 {
-	PROC_INIT,
-	PROC_ERROR
+	DEFAULT,
+	SET_ERROR,
+	THD_ERROR
 };
 
 enum e_state_flag
@@ -53,7 +54,8 @@ enum e_err
 	ERR_INVALID_ARGS,
 	ERR_ALLOC,
 	ERR_INIT_PHILO,
-	ERR_INIT_MUTEX
+	ERR_INIT_MUTEX,
+	ERR_THD_CREATE
 };
 
 #endif

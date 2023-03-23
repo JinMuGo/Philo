@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/05 14:02:20 by jgo               #+#    #+#              #
-#    Updated: 2023/03/20 14:40:09 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/22 19:51:12 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,9 @@ endif
 ifdef ADDR
 	CFLAGS += -fsanitize=address
 endif
+
+MANDATORY_LIB_DIR = src/src_m/lib
+BONUS_LIB_DIR = src/src_b/lib
 
 link_files:: unlink_files
 	$(Q)$(call color_printf,$(GRAY),includes,📁 make includes folder)

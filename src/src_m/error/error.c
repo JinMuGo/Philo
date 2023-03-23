@@ -6,14 +6,15 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:52:05 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/22 11:17:01 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/23 11:23:17 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "def.h"
+#include "state_control.h"
 
-bool prt_err(t_err err_num)
+bool prt_err(t_err err_num, t_proc_state state)
 {
 	char *msg;
 
@@ -28,20 +29,9 @@ bool prt_err(t_err err_num)
 		msg = ERR_INIT_PHILO_MSG;
 	else if (err_num == ERR_INIT_MUTEX)
 		msg = ERR_INIT_MUTEX_MSG;
+	else if (err_num == ERR_THD_CREATE)
+		msg = ERR_THD_CREATE_MSG;
 	printf("%s\n", msg);
+	set_proc_state(state);
 	return (false);
-}
-
-bool	sc_err(int rv)
-{
-	if (rv)
-		return (false);
-	return (true);
-}
-
-bool output_err(int rv)
-{
-	if (rv < 0)
-		return (false);
-	return (true);
 }

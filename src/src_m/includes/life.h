@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:07:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/20 15:45:21 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/22 20:48:48 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 # define LIFE_H
 
 void *begin_life(void *philo_arg);
+
+bool be_born_philo(t_meta *meta);
 
 #endif

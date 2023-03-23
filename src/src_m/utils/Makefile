@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/21 11:33:12 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/22 19:50:54 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,11 @@ endif
 include $(TOPDIR)/config/Rules.mk
 include $(TOPDIR)/config/color_rules.mk
 
-SRCS = init.c \
+SRCS = 	garbage_collector.c \
 		output.c \
 		time.c \
 		utils.c \
-		state_control.c \
-		make_philo.c
+		state_control.c
 
 NAME = utils.a
 
@@ -38,10 +37,10 @@ all bonus :
 $(NAME): $(OBJS)
 	$(Q)$(call color_printf,$(GREEN),$(NAME),📚 archive object)
 	$(AR) $(ARFLAGS) $@ $^
-	$(Q)$(MAKE) files="$(NAME)" src_dir=`pwd` dst_dir=$(TOPDIR)/src/src_m/lib link_files
+	$(Q)$(MAKE) files="$(NAME)" src_dir=`pwd` dst_dir=$(TOPDIR)/$(MANDATORY_LIB_DIR) link_files
 	
 clean:
-	$(Q)$(MAKE) files="$(NAME)" src_dir=`pwd` dst_dir=$(TOPDIR)/src/src_m/lib unlink_files
+	$(Q)$(MAKE) files="$(NAME)" src_dir=`pwd` dst_dir=$(TOPDIR)/$(MANDATORY_LIB_DIR) unlink_files
 	$(Q)$(call color_printf,$(RED),$(NAME),🗑️  remove Objects && Dependency file)
 	$(RM) $(OBJS) $(DEPS)
 

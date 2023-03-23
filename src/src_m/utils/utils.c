@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/22 15:07:44 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/22 19:44:36 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,13 @@
 #include "def.h"
 #include "state_control.h"
 
-static bool ft_isdigit(int c)
-{
-	return ('0' <= c && c <= '9');
-}
-
 uint64_t	char_to_uint64(const char *str)
 {
 	uint64_t	result;
 	int			sign;
 	int			i;
 
-	if (get_proc_state() == PROC_ERROR)
+	if (get_proc_state() == SET_ERROR)
 		return (0);
 	result = 0;
 	sign = 1;
@@ -38,14 +33,26 @@ uint64_t	char_to_uint64(const char *str)
 			sign *= -1;
 		i++;
 	}
-	while (str[i] && ft_isdigit(str[i]))
+	while (str[i] && ('0' <= str[i] && str[i] <= '9'))
 		result = result * 10 + str[i++] - '0';
 	if (sign == -1 || str[i] != '\0')
 	{
-		set_proc_state(PROC_ERROR);
+		set_proc_state(SET_ERROR);
 		return (0);
 	}
 	return (result);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*dst;
+
+	dst = malloc(size * count);
+	if (dst)
+		memset(dst, 0, size * count);
+	else
+		return (NULL);
+	return (dst);
 }
 
 // void	clear_all_asset(t_meta *meta)

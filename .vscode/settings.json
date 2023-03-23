@@ -12,6 +12,8 @@
         "sstream": "c",
         "err.h": "c",
         "utils.h": "c",
-        "error.h": "c"
+        "error.h": "c",
+        "state_control.h": "c",
+        "set_meta.h": "c"
     }
 }

@@ -29,6 +29,7 @@
 # define ERR_ALLOC_MSG "❌ Memory allocation failed"
 # define ERR_INIT_PHILO_MSG "❌ error occured during philosopher initialized"
 # define ERR_INIT_MUTEX_MSG "❌ error occured during mutex initialized"
+# define ERR_THD_CREATE_MSG "❌ error occured during pthread create"
 
 /* color */
 # define BOLD "\e[1m"
