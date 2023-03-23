@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/22 19:44:36 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/23 19:51:28 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,50 @@ void	*ft_calloc(size_t count, size_t size)
 		return (NULL);
 	return (dst);
 }
+
+static size_t	cal_num_len(int n)
+{
+	size_t	len;
+
+	len = 0;
+	if (n <= 0)
+		len++;
+	while (n)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
+
+char	*ft_itoa(int n)
+{
+	unsigned int	tmp;
+	char			*num;
+	int				len;
+	int				for_minus;
+
+	for_minus = 0;
+	len = cal_num_len(n);
+	num = malloc(sizeof(char) * (len + 1));
+	if (!num)
+		return ((void *)0);
+	tmp = n;
+	if (n < 0)
+	{
+		tmp *= -1;
+		num[0] = '-';
+		for_minus++;
+	}
+	num[len] = '\0';
+	while (len-- > for_minus)
+	{
+		num[len] = (tmp % 10) + '0';
+		tmp /= 10;
+	}
+	return (num);
+}
+
 
 // void	clear_all_asset(t_meta *meta)
 // {

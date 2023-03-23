@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/03/23 15:20:51 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/23 20:11:23 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,8 @@ all bonus :
 	$(Q)$(call color_printf,$(GREEN),$(NAME),✨ compiled!)
 
 $(NAME): $(OBJS) $(LIBS)
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 	$(MAKE) files="$(HEADS)" src_dir=`pwd`/includes dst_dir=$(TOPDIR)/includes link_files
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 	$(MAKE) files="$(NAME)" src_dir=`pwd` dst_dir=$(TOPDIR) link_files
 	
 clean:

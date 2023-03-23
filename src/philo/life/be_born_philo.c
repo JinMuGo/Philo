@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:17:15 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/23 11:37:08 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/23 19:18:02 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ bool be_born_philo(t_meta *meta)
 	int	i;
 
 	i = 0;
-	pthread_mutex_lock(&meta->mutex.start_mt);
+	pthread_mutex_lock(&meta->start_mt);
 	while (i < meta->args.num_of_philo)
 	{
 		if(pthread_create(meta->table.tids + i, NULL, begin_life, meta->table.philos + i))
 			return (prt_err(ERR_THD_CREATE, THD_ERROR));
 		i++;
 	}
-	pthread_mutex_unlock(&meta->mutex.start_mt);
+	pthread_mutex_unlock(&meta->start_mt);
 	return (true);
 }

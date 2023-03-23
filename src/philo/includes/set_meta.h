@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:50:49 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/23 15:40:43 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/23 19:28:44 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	set_meta(t_meta *meta, int ac, char **av);
 bool	set_args(t_args *args, int ac, char **av);
 
 /* set_table.c */
-bool	set_table(t_table *table, const int num_of_philo);
-
-/* set_mutex.c */
-bool set_mutex(t_mutex *mutex, const int num_of_philo);
+bool	set_table(t_table *table, const int num_of_philo, t_deque *deque);
 
 /* set_clerk.c */
 bool	set_clerk(t_clerk *clerk, const int num_of_philo);

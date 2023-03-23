@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 13:42:33 by jgo               #+#    #+#              #
-#    Updated: 2023/03/23 14:40:25 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/23 19:34:42 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,6 @@ clean fclean :
 # $(MAKE) TOPDIR=$(TOPDIR) -C $(BONUS_DIR) $@
 
 re : fclean
-	$(MAKE) TOPDIR=$(TOPDIR) -C $(MANDATORY_DIR) $@
+	$(MAKE) TOPDIR=$(TOPDIR) -C $(MANDATORY_DIR)
 
 .PHONY: all clean fclean re bonus

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:13:49 by sanghwal          #+#    #+#             */
-/*   Updated: 2023/03/23 17:16:53 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/23 20:00:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ t_deque	*deque_init(size_t size)
 {
 	t_deque	*deque;
 
-	deque = ft_calloc(sizeof(t_deque));
+	deque = ft_calloc(1, sizeof(t_deque));
 	if (deque == NULL)
+		return (NULL);
+	if (pthread_mutex_init(&deque->queue_mt, NULL))
 		return (NULL);
 	deque->capacity = size;
 	deque->front = 0;

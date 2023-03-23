@@ -17,6 +17,9 @@
         "set_meta.h": "c",
         "deque.h": "c",
         "__split_buffer": "c",
-        "deque": "c"
+        "deque": "c",
+        "__mutex_base": "c",
+        "__cxx_version": "c",
+        "life.h": "c"
     }
 }

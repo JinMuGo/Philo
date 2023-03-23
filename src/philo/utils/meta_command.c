@@ -1,23 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_meta.c                                         :+:      :+:    :+:   */
+/*   meta_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 20:17:17 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/23 19:43:17 by jgo              ###   ########.fr       */
+/*   Created: 2023/03/23 18:07:05 by jgo               #+#    #+#             */
+/*   Updated: 2023/03/23 18:07:06 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include "def.h"
-#include "set_meta.h"
-
-void	set_meta(t_meta *meta, int ac, char **av)
-{
-	memset(meta, 0, sizeof(t_meta));
-	set_args(&meta->args, ac, av);
-	set_clerk(&meta->clerk, meta->args.num_of_philo);
-	set_table(&meta->table, meta->args.num_of_philo, meta->clerk.deque);
-}

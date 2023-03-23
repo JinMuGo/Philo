@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/05 14:02:20 by jgo               #+#    #+#              #
-#    Updated: 2023/03/23 14:56:11 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/23 20:12:50 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,10 @@ ifdef ADDR
 	CFLAGS += -fsanitize=address
 endif
 
+ifdef RACE
+	CFLAGS += -fsanitize=thread
+	LDFLAGS += -fsanitize=thread
+endif
 
 link_files:: unlink_files
 	$(Q)$(call color_printf,$(GRAY),includes,📁 make includes folder)
