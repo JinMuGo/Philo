@@ -20,6 +20,7 @@
         "deque": "c",
         "__mutex_base": "c",
         "__cxx_version": "c",
-        "life.h": "c"
+        "life.h": "c",
+        "dead_command.h": "c"
     }
 }

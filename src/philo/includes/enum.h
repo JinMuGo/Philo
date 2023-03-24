@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:12:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/23 10:54:49 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/24 12:01:44 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ enum e_philo_state
 	PHILO_EAT,
 	PHILO_SLEEP,
 	PHILO_THINK,
-	PHILO_DIED
+	PHILO_DIED,
+	PHILO_STOP_DINING
 };
 
 enum e_fork_state

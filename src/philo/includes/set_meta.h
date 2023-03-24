@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:50:49 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/23 19:28:44 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/24 11:39:16 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,8 @@ bool	set_table(t_table *table, const int num_of_philo, t_deque *deque);
 
 /* set_clerk.c */
 bool	set_clerk(t_clerk *clerk, const int num_of_philo);
+
+/* set_meta_mutex.c */
+bool	set_meta_mutex(t_meta_mutex *mutex);
 
 #endif

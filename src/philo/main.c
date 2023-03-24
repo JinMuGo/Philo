@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/23 19:52:14 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/24 11:24:48 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "error.h"
 #include "set_meta.h"
 #include "life.h"
+#include "dead_command.h"
 
 void	test_queue(char *msg)
 {
@@ -28,13 +29,10 @@ void	test_queue(char *msg)
 
 static void life_goes_on_until_death(t_clerk *clerk)
 {
-	int	i;
-
-	i = 0;
-	while (i < 100)
+	while (!get_dead_report())
 	{
+		// check_someone_dead();
 		test_queue(clerk->deque->pop_front(clerk->deque));
-		i++;
 	}
 }
 

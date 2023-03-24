@@ -24,6 +24,7 @@ typedef struct s_table t_table;
 typedef struct s_deque	t_deque;
 typedef struct s_clerk t_clerk;
 typedef	struct s_report t_report;
+typedef struct s_meta_mutex t_meta_mutex;
 
 struct s_table
 {
@@ -31,7 +32,6 @@ struct s_table
 	pthread_t		*tids;
 	t_fork_state	*forks;
 	pthread_mutex_t	*forks_mt;
-	bool			someone_dead;
 };
 
 struct s_args
@@ -48,12 +48,18 @@ struct s_clerk
 	t_deque *deque;
 };
 
+struct s_meta_mutex
+{
+	pthread_mutex_t	start_mt;
+	pthread_mutex_t	dead_mt;
+};
+
 struct s_meta
 {
 	t_args			args;
 	t_clerk			clerk;
 	t_table			table;
-	pthread_mutex_t	start_mt;
+	t_meta_mutex	mutex;
 };
 
 struct s_state
