@@ -25,6 +25,14 @@ typedef struct s_deque	t_deque;
 typedef struct s_clerk t_clerk;
 typedef	struct s_report t_report;
 typedef struct s_meta_mutex t_meta_mutex;
+typedef struct s_alert t_alert;
+
+struct s_alert
+{
+	bool	*terminate;
+	pthread_mutex_t	*alert_mt;
+
+};
 
 struct s_table
 {
@@ -60,6 +68,8 @@ struct s_meta
 	t_clerk			clerk;
 	t_table			table;
 	t_meta_mutex	mutex;
+	t_alert			alert;
+	uint64_t		start_time;
 };
 
 struct s_state
@@ -80,9 +90,11 @@ struct s_philo
 	t_philo_state	state;
 	bool			fork[2];
 	int				eat_cnt;
-	uint64_t		last_meal;
+	uint64_t		*last_meal;
 	t_report		report;
-	t_deque			*deque;
+	t_deque			*box;
+	t_alert			*alert;
+	pthread_mutex_t	*start_mt;
 };
 
 struct s_deque

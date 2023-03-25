@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/05 14:02:20 by jgo               #+#    #+#              #
-#    Updated: 2023/03/23 20:12:50 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/25 15:19:12 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,8 @@ ifdef ADDR
 endif
 
 ifdef RACE
-	CFLAGS += -fsanitize=thread
-	LDFLAGS += -fsanitize=thread
+	CFLAGS = -fsanitize=thread -MMD -MP -g3
+	LDFLAGS += -fsanitize=thread -g3
 endif
 
 link_files:: unlink_files

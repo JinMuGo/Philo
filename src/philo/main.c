@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/24 11:24:48 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/25 15:37:04 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ static void life_goes_on_until_death(t_clerk *clerk)
 	}
 }
 
+void	wait_terminate_philo(t_meta *meta)
+{
+	int	i;
+
+	i = 0;
+	while (i < meta->args.num_of_philo)
+	{
+		pthread_join(meta->table.tids[i], NULL);
+		i++;
+	}
+}
+
 // number_of_philosophers
 // time_to_die
 // time_to_eat
@@ -50,8 +62,8 @@ int main(int ac, char **av)
 		return (prt_err(ERR_ARGS, SET_ERROR));
 	set_meta(&meta, ac, av);
 	be_born_philo(&meta);
-	life_goes_on_until_death(&meta.clerk);
-	
+	// life_goes_on_until_death(&meta.clerk);
+	wait_terminate_philo(&meta);
 	// garbage_collector();
 	return (EXIT_SUCCESS);
 }

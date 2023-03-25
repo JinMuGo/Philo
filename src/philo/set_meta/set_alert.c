@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   be_born_philo.c                                    :+:      :+:    :+:   */
+/*   set_alert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 15:17:15 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/25 15:55:58 by jgo              ###   ########.fr       */
+/*   Created: 2023/03/25 14:00:19 by jgo               #+#    #+#             */
+/*   Updated: 2023/03/25 15:55:27 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "def.h"
-#include "life.h"
 #include "error.h"
 #include "utils.h"
 
-bool be_born_philo(t_meta *meta)
+bool set_alert(t_alert *alert, const int num_of_philo)
 {
 	int	i;
-
+	
+	alert->terminate = ft_calloc(sizeof(bool), num_of_philo);
+	if (alert->terminate == NULL)
+		return (prt_err(ERR_ALLOC, SET_ERROR));
+	alert->alert_mt = ft_calloc(sizeof(pthread_mutex_t), num_of_philo);
+	if (alert->alert_mt == NULL)
+		return (prt_err(ERR_ALLOC, SET_ERROR));
 	i = 0;
-	pthread_mutex_lock(&meta->mutex.start_mt);
-	while (i < meta->args.num_of_philo)
+	while (i < num_of_philo)
 	{
-		if (i == meta->args.num_of_philo - 1)
-			meta->start_time = get_ms_time();
-		if(pthread_create(meta->table.tids + i, NULL, begin_life, meta->table.philos + i))
-			return (prt_err(ERR_THD_CREATE, THD_ERROR));
+		if (pthread_mutex_init(alert->alert_mt + i, NULL))
+			return (false);
 		i++;
 	}
-	pthread_mutex_unlock(&meta->mutex.start_mt);
 	return (true);
 }
