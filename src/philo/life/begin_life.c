@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:06:24 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 14:02:47 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/26 21:08:10 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "def.h"
 #include "utils.h"
 #include "err.h"
-#include "dead_command.h"
 #include "life.h"
 
 t_report	write_report(t_philo *philo, t_philo_state state)
@@ -45,24 +44,6 @@ static void	a_day_of_philo(t_philo *philo)
 		philo_think(philo);
 	}
 }
-
-// static void wait_till_all_ready(t_philo *philo)
-// {
-// 	bool	ready;	
-
-// 	pthread_mutex_lock(&philo->alert->alert_mt);
-// 	philo->alert->ready_cnt++;
-// 	if (philo->args->num_of_philo == philo->alert->ready_cnt)
-// 		philo->args->start_time_of_sim = get_ms_time();
-// 	pthread_mutex_unlock(&philo->alert->alert_mt);
-// 	ready = false;
-// 	while (!ready)
-// 	{
-// 		pthread_mutex_lock(&philo->alert->alert_mt);
-// 		ready = (philo->args->num_of_philo == philo->alert->ready_cnt);
-// 		pthread_mutex_unlock(&philo->alert->alert_mt);
-// 	}
-// }
 
 void *begin_life(void *philo_arg)
 {

@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/24 11:25:08 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/26 16:30:05 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,10 @@ endif
 include $(TOPDIR)/config/Rules.mk
 include $(TOPDIR)/config/color_rules.mk
 
-SRCS = 	garbage_collector.c \
-		output.c \
+SRCS =	output.c \
 		time.c \
 		utils.c \
-		state_control.c \
-		dead_command.c
+		state_control.c
 
 NAME = utils.a
 

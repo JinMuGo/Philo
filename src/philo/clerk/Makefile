@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/25 21:37:57 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/26 21:03:18 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ include $(TOPDIR)/config/Rules.mk
 include $(TOPDIR)/config/color_rules.mk
 
 SRCS =  clerk.c \
-		Deque.c \
+		queue.c
 
 NAME = clerk.a
 

@@ -22,6 +22,8 @@
         "__cxx_version": "c",
         "life.h": "c",
         "dead_command.h": "c",
-        "ratio": "c"
+        "ratio": "c",
+        "queue.h": "c",
+        "queue": "c"
     }
 }

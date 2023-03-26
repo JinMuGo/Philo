@@ -21,7 +21,7 @@ typedef struct s_philo t_philo;
 typedef struct s_state	t_state;
 typedef struct s_args	t_args;
 typedef struct s_table t_table;
-typedef struct s_deque	t_deque;
+typedef struct s_queue	t_queue;
 typedef struct s_clerk t_clerk;
 typedef	struct s_report t_report;
 typedef struct s_alert t_alert;
@@ -32,6 +32,7 @@ struct s_alert
 	bool			*terminate;
 	pthread_mutex_t	alert_mt;
 	pthread_mutex_t	*terminate_mt;
+	pthread_mutex_t	*philos_mt;
 };
 
 struct s_table
@@ -39,7 +40,6 @@ struct s_table
 	t_philo			*philos;
 	pthread_t		*tids;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	*philos_mt;
 };
 
 struct s_args
@@ -54,7 +54,7 @@ struct s_args
 
 struct s_clerk
 {
-	t_deque *deque;
+	t_queue *queue;
 };
 
 struct s_meta
@@ -88,22 +88,19 @@ struct s_philo
 	uint64_t		last_meal;
 	pthread_mutex_t	last_meal_mt;
 	t_report		report;
-	t_deque			*box;
+	t_queue			*box;
 	t_alert			*alert;
 	pthread_mutex_t	*start_mt;
 	t_args 			*args;
 };
 
-struct s_deque
+struct s_queue
 {
 	pthread_mutex_t	queue_mt;
-	size_t			capacity;
-	size_t 			front;
-	size_t 			rear;
-	size_t 			use_size;
 	t_report    	*papers;
-	void			(*push_rear)(t_deque *, t_report);
-	t_report		(*pop_front)(t_deque *);
+	int				front;
+	int				rear;
+	int				size;
 };
 
 #endif

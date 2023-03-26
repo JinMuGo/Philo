@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 14:33:36 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/26 22:26:44 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include "error.h"
 #include "set_meta.h"
 #include "life.h"
-#include "dead_command.h"
+#include "state_control.h"
+#include "queue.h"
 
 static bool	check_someone_dead(t_meta *meta)
 {
@@ -53,29 +54,33 @@ static bool	check_dining_comp(t_meta *meta)
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
-		pthread_mutex_lock(meta->table.philos_mt + i);
+		pthread_mutex_lock(meta->alert.philos_mt + i);
 		eat_cnt = meta->table.philos[i].eat_cnt;
-		pthread_mutex_unlock(meta->table.philos_mt + i);
+		pthread_mutex_unlock(meta->alert.philos_mt + i);
 		if (eat_cnt < meta->args.num_of_must_eat)
 			return (false);
 		i++;
 	}
+	printf("all philo complete dining!\n");
 	return (true);
 }
 
 static void life_goes_on_until_death(t_meta *meta)
 {
+	if (get_proc_state())
+		return ;
 	while (!check_someone_dead(meta) && !check_dining_comp(meta))
 	{
-		output(meta->clerk.deque->pop_front(meta->clerk.deque));
+		output(dequeue(meta->clerk.queue));
 	}
-
 }
 
 void	wait_terminate_philo(t_meta *meta)
 {
 	int	i;
 
+	if (get_proc_state())
+		return ;
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
@@ -98,19 +103,20 @@ void	wait_terminate_philo(t_meta *meta)
 // time_to_sleep
 // number_of_times_each_philosopher_must_eat optional
 // philosopher
-
 int main(int ac, char **av)
 {
 	t_meta meta;
 
 	if (ac < 5 || 6 < ac)
 		return (prt_err(ERR_ARGS, SET_ERROR));
-	set_meta(&meta, ac, av);
+	if (!set_meta(&meta, ac, av))
+		return (EXIT_FAILURE);
 	be_born_philo(&meta);
-	// ---------------------
 	life_goes_on_until_death(&meta);
 	wait_terminate_philo(&meta);
 	clear_all_asset(&meta);
-	system("leaks philo");
-	return (EXIT_SUCCESS);
+	if (get_proc_state())
+		return (EXIT_FAILURE);
+	else
+		return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:17:15 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 14:31:41 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/26 16:31:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 #include "life.h"
 #include "error.h"
 #include "utils.h"
+#include "state_control.h"
 
 bool be_born_philo(t_meta *meta)
 {
 	int	i;
 
+	if (get_proc_state())
+		return (false);
 	i = 0;
 	pthread_mutex_lock(&meta->start_mt);
 	while (i < meta->args.num_of_philo)

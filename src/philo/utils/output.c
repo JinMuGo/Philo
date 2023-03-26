@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:42:09 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 13:28:58 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/26 21:37:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ static char *get_philo_state_msg(t_philo_state state)
 	return (DIED_MSG);
 }
 
-void    output(t_report report)
+void    output(t_report *report)
 {
-	if (report.num)
-    	printf("%llu %d %s", report.time_stamp, report.num, get_philo_state_msg(report.state));
+	if (report == NULL || report->num == 0)
+		return ;
+	printf("%llu %d %s", report->time_stamp, report->num, get_philo_state_msg(report->state));
 }

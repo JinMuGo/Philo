@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:29:16 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 14:26:56 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/26 22:22:26 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,7 @@
 #include "def.h"
 #include "error.h"
 #include "utils.h"
-
-static bool	set_table_mutex(pthread_mutex_t *mutex, const int num_of_philo)
-{
-	int	i;
-
-	i = 0;
-	while (i < num_of_philo)
-	{
-		if (pthread_mutex_init(mutex + i, NULL))
-			return (false);
-		i++;
-	}
-	return (true);
-}
+#include "set_meta.h"
 
 static bool setting_table(t_table *table, const int num_of_philo, t_meta *meta)
 {
@@ -40,7 +27,7 @@ static bool setting_table(t_table *table, const int num_of_philo, t_meta *meta)
 		table->philos[i].state = PHILO_INIT;
 		table->philos[i].eat_cnt = 0;
 		table->philos[i].last_meal = 0;
-		table->philos[i].box = meta->clerk.deque;
+		table->philos[i].box = meta->clerk.queue;
 		table->philos[i].alert = &meta->alert;
 		table->philos[i].args = &meta->args;
 		table->philos[i].start_mt = &meta->start_mt;
@@ -70,10 +57,7 @@ bool	set_table(t_table *table, const int num_of_philo, t_meta *meta)
 	table->tids = ft_calloc(num_of_philo, sizeof(pthread_t));
 	if (table->tids == NULL)
 		return (prt_err(ERR_ALLOC, SET_ERROR));
-	table->philos_mt = ft_calloc(sizeof(pthread_mutex_t), num_of_philo);
-	if (table->philos_mt == NULL)
-		return (prt_err(ERR_ALLOC, SET_ERROR));	
-	if (!set_table_mutex(table->forks, num_of_philo) || !set_table_mutex(table->philos_mt, num_of_philo))
+	if (!set_mutex_arr(table->forks, num_of_philo))
 		return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
 	return (true);
 }

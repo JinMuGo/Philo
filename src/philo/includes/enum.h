@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:12:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 13:52:05 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/26 17:04:39 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ enum e_proc_state
 {
 	DEFAULT,
 	SET_ERROR,
-	THD_ERROR
+	THD_ERROR,
+	QUE_ERROR
 };
 
 enum e_state_flag
@@ -56,7 +57,8 @@ enum e_err
 	ERR_ALLOC,
 	ERR_INIT_PHILO,
 	ERR_INIT_MUTEX,
-	ERR_THD_CREATE
+	ERR_THD_CREATE,
+	ERR_ENQUEUE,
 };
 
 #endif
