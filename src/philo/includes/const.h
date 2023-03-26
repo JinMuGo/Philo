@@ -13,8 +13,10 @@
 #ifndef CONST_H
 # define CONST_H
 
-# define LEFT 0
-# define RIGHT 1
+# define FT 42
+
+# define L 0
+# define R 1
 
 /* output.c */
 # define FORK_MSG "has taken a fork\n"

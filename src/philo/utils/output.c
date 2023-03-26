@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:42:09 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/23 17:15:02 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/26 13:28:58 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,8 @@ static char *get_philo_state_msg(t_philo_state state)
 	return (DIED_MSG);
 }
 
-void    output(uint64_t time, int num ,t_philo_state state)
+void    output(t_report report)
 {
-	// lock
-    printf("%llu %d %s\n", time, num, get_philo_state_msg(state));
-	// 출력을 담당하는 thread를 하나 더 만들까? 
-	// 그래서 그곳에서 메시지를 받아서 처리하는 형식? 나쁘지 않을듯?
-	// unlock
+	if (report.num)
+    	printf("%llu %d %s", report.time_stamp, report.num, get_philo_state_msg(report.state));
 }

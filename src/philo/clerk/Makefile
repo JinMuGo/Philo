@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/23 19:53:06 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/25 21:37:57 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ include $(TOPDIR)/config/color_rules.mk
 
 SRCS =  clerk.c \
 		Deque.c \
-		Deque_utils.c
 
 NAME = clerk.a
 

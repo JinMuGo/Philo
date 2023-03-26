@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/25 14:19:07 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/26 14:32:17 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,58 @@ void	*ft_calloc(size_t count, size_t size)
 	return (dst);
 }
 
-// void	clear_all_asset(t_meta *meta)
-// {
-	
-// }
+void	destroy_mutex_arr(pthread_mutex_t *arr, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		pthread_mutex_destroy(arr + i);
+		i++;
+	}
+	free(arr);
+}
+
+void	clear_philos(t_philo *philos, const int num_of_philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < num_of_philo)
+	{
+		pthread_mutex_destroy(&philos[i].last_meal_mt);
+		i++;
+	}
+}
+
+void	clear_table(t_table *table, const int num_of_philo)
+{
+	if (table->forks)
+		destroy_mutex_arr(table->forks, num_of_philo);
+	if (table->philos_mt)
+		destroy_mutex_arr(table->philos_mt, num_of_philo);
+	if (table->tids)
+		free(table->tids);
+	if (table->philos)
+		clear_philos(table->philos, num_of_philo);
+}
+
+void	clear_alert(t_alert *alert, const int num_of_philo)
+{
+	if (alert->terminate)
+		free(alert->terminate);
+	if (alert->terminate_mt)
+		destroy_mutex_arr(alert->terminate_mt, num_of_philo);
+	pthread_mutex_destroy(&alert->alert_mt);
+}
+
+void	clear_all_asset(t_meta *meta)
+{
+	if (meta->clerk.deque->papers)
+		free(meta->clerk.deque->papers);
+	if (meta->clerk.deque)
+		free(meta->clerk.deque);
+	clear_table(&meta->table, meta->args.num_of_philo);
+	clear_alert(&meta->alert, meta->args.num_of_philo);
+}

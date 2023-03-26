@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:12:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/24 12:01:44 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/26 13:52:05 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ enum e_philo_state
 enum e_fork_state
 {
 	ON_TABLE,
-	SOMEONE_USE
+	ON_HAND
 };
 
 enum e_err

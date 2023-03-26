@@ -10,7 +10,7 @@
             "name": "Debug",
             "program": "${workspaceFolder}/philo",
 			"console": "integratedTerminal",
-            "args": ["43", "100", "200", "300"],
+            "args": ["5", "500", "300", "100"],
             "cwd": "${workspaceFolder}"
         }
     ]
