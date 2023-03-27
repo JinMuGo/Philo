@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:06:24 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 21:08:10 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/27 17:54:35 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,19 @@ static bool check_terminate(t_philo *philo)
 	return (terminate);
 }
 
+static bool check_right_fork(t_philo *philo)
+{
+	return (philo->fork[L] != philo->fork[R]);
+}
+
 static void	a_day_of_philo(t_philo *philo)
 {
 	while (!check_terminate(philo))
 	{
 		philo_take_left_fork(philo);
 		philo_take_right_fork(philo);
+		if (!check_right_fork(philo))
+			break ;
 		philo_eat(philo);
 		philo_sleep(philo);
 		philo_think(philo);
