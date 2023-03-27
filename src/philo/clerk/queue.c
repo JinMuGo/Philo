@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:48:03 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 22:16:25 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/27 17:09:51 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ t_report *dequeue(t_queue *queue)
 	{
 		queue->front = (queue->front + 1) % queue->size;
 		node = &queue->papers[queue->front];
+		if (node->num == 0)
+			return (unlock_and_return(&queue->queue_mt, NULL));
 		return (unlock_and_return(&queue->queue_mt, node));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 22:24:44 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/27 15:13:14 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	clear_alert(t_alert *alert, const int num_of_philo)
 		destroy_mutex_arr(alert->terminate_mt, num_of_philo);
 	if (alert->philos_mt)
 		destroy_mutex_arr(alert->philos_mt, num_of_philo);
-	pthread_mutex_destroy(&alert->alert_mt);
 }
 
 void	clear_all_asset(t_meta *meta)

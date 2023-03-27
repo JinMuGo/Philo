@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 10:46:23 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 22:17:23 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/27 14:41:25 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_proc_state get_proc_state()
 	return (proc_state_receiver(GET, 0));
 }
 
-void set_proc_state(t_proc_state arg, pthread_mutex_t *mutex)
+void set_proc_state(t_proc_state arg)
 {
 	proc_state_receiver(SET, arg);
 }

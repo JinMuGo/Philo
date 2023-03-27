@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 22:26:44 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/27 17:18:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static bool	check_someone_dead(t_meta *meta)
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
-		cur_time = get_ms_time();
 		pthread_mutex_lock(&meta->table.philos[i].last_meal_mt);
 		last_meal = meta->table.philos[i].last_meal;
+		cur_time = get_ms_time();
 		pthread_mutex_unlock(&meta->table.philos[i].last_meal_mt);
 		elapsed_time = cur_time - last_meal;
 		if (elapsed_time > meta->args.time_to_die)

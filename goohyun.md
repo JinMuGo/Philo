@@ -35,3 +35,19 @@ philos 철학자들 philo thd
 ### 과제를 진행하면서 찾아본 링크들. 
 
 - https://moonsiri.tistory.com/156 (대기열 서버에 관한 것) 
+
+
+
+죽는 거 확인 -> main -> 죽은 자는 말이없음. -> 
+
+main thd -> clerk(서기)역할을 함 -> 메인이 pop하면서 출력함. mt
+
+philo thd mt  -> clerk의 queue에 자신의 상태를 기록합니다. 
+-> alert를 보면서 자신이 종료되어야함을 알아챕니다. mt
+
+
+
+start_mt 
+
+모든 스레드들이 같은 시간에 식사를 시작할 수 있게 해줌.
+
