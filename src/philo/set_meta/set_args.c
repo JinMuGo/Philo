@@ -26,7 +26,7 @@ bool	set_args(t_args *args, int ac, char **av)
 		args->num_of_must_eat = char_to_uint64(av[5]);
 	else
 		args->num_of_must_eat = -1;
-	if(get_proc_state() == SET_ERROR)
+	if (get_proc_state() == SET_ERROR)
 		return (prt_err(ERR_INVALID_ARGS, SET_ERROR));
 	args->start_time_of_sim = 0;
 	return (true);

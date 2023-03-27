@@ -13,6 +13,6 @@
 #ifndef ERROR_H
 # define ERROR_H
 
-bool prt_err(t_err err_num, t_proc_state state);
+bool	prt_err(t_err err_num, t_proc_state state);
 
 #endif

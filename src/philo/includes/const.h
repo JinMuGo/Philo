@@ -44,5 +44,4 @@
 # define BLUE "\e[94m"
 # define RESET "\e[0m"
 
-
 #endif

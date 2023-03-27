@@ -24,6 +24,10 @@
         "dead_command.h": "c",
         "ratio": "c",
         "queue.h": "c",
-        "queue": "c"
+        "queue": "c",
+        "unistd.h": "c",
+        "stdio.h": "c",
+        "string": "c",
+        "mutex.h": "c"
     }
 }

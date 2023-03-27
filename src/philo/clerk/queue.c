@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:48:03 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/27 17:09:51 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/27 18:45:34 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static bool	is_full(t_queue *queue)
 	return ((queue->rear + 1) % queue->size == queue->front);
 }
 
-static bool is_empty(t_queue *queue)
+static bool	is_empty(t_queue *queue)
 {
 	return (queue->rear == queue->front);
 }
@@ -58,9 +58,9 @@ bool	enqueue(t_queue *queue, t_report report)
 	return (true);
 }
 
-t_report *dequeue(t_queue *queue)
+t_report	*dequeue(t_queue *queue)
 {
-	t_report *node;
+	t_report	*node;
 
 	pthread_mutex_lock(&queue->queue_mt);
 	if (is_empty(queue))

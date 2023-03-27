@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:29:16 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 22:22:26 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/27 18:43:27 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "utils.h"
 #include "set_meta.h"
 
-static bool setting_table(t_table *table, const int num_of_philo, t_meta *meta)
+static bool	setting_table(t_table *table, const int num_of_philo, t_meta *meta)
 {
 	int	i;
 

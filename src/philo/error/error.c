@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:52:05 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 17:04:29 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/27 18:28:56 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "def.h"
 #include "state_control.h"
 
-bool prt_err(t_err err_num, t_proc_state state)
+bool	prt_err(t_err err_num, t_proc_state state)
 {
-	char *msg;
+	char	*msg;
 
 	msg = NULL;
 	if (err_num == ERR_ARGS)

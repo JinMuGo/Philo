@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:06:24 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/27 17:54:35 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/27 19:02:20 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,19 @@
 #include "utils.h"
 #include "err.h"
 #include "life.h"
+#include "mutex.h"
 
 t_report	write_report(t_philo *philo, t_philo_state state)
 {
-	const t_report report = {(get_ms_time() - philo->args->start_time_of_sim) , philo->report.num, state};
+	const t_report	report = {\
+		(get_ms_time() - philo->args->start_time_of_sim), \
+		philo->report.num, \
+		state};
 
 	return (report);
 }
 
-static bool check_terminate(t_philo *philo)
+static bool	check_terminate(t_philo *philo)
 {
 	bool	terminate;
 
@@ -33,7 +37,7 @@ static bool check_terminate(t_philo *philo)
 	return (terminate);
 }
 
-static bool check_right_fork(t_philo *philo)
+static bool	check_right_fork(t_philo *philo)
 {
 	return (philo->fork[L] != philo->fork[R]);
 }
@@ -52,14 +56,13 @@ static void	a_day_of_philo(t_philo *philo)
 	}
 }
 
-void *begin_life(void *philo_arg)
+void	*begin_life(void *philo_arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = philo_arg;
 	philo->report.num = philo->idx + 1;
-	pthread_mutex_lock(philo->start_mt);
-	pthread_mutex_unlock(philo->start_mt);
+	waiting_for_the_start(philo);
 	pthread_mutex_lock(&philo->last_meal_mt);
 	philo->last_meal = philo->args->start_time_of_sim;
 	pthread_mutex_unlock(&philo->last_meal_mt);

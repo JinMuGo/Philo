@@ -13,18 +13,18 @@
 #ifndef DEF_H
 # define DEF_H
 
-#include "enum.h"
-#include "const.h"
+# include "enum.h"
+# include "const.h"
 
-typedef struct s_meta t_meta;
-typedef struct s_philo t_philo;
+typedef struct s_meta	t_meta;
+typedef struct s_philo	t_philo;
 typedef struct s_state	t_state;
 typedef struct s_args	t_args;
-typedef struct s_table t_table;
+typedef struct s_table	t_table;
 typedef struct s_queue	t_queue;
-typedef struct s_clerk t_clerk;
-typedef	struct s_report t_report;
-typedef struct s_alert t_alert;
+typedef struct s_clerk	t_clerk;
+typedef struct s_report	t_report;
+typedef struct s_alert	t_alert;
 
 struct s_alert
 {
@@ -54,7 +54,7 @@ struct s_args
 
 struct s_clerk
 {
-	t_queue *queue;
+	t_queue	*queue;
 };
 
 struct s_meta
@@ -62,14 +62,14 @@ struct s_meta
 	t_args			args;
 	t_clerk			clerk;
 	t_table			table;
-	pthread_mutex_t	start_mt;
 	t_alert			alert;
 	uint64_t		start_time;
+	pthread_mutex_t	start_mt;
 };
 
 struct s_state
 {
-	t_proc_state state;
+	t_proc_state	state;
 };
 
 struct s_report
@@ -83,24 +83,24 @@ struct s_philo
 {
 	int				idx;
 	t_philo_state	state;
-	pthread_mutex_t	*fork[2];
-	int				eat_cnt;
-	uint64_t		last_meal;
-	pthread_mutex_t	last_meal_mt;
-	t_report		report;
+	t_args			*args;
 	t_queue			*box;
 	t_alert			*alert;
+	t_report		report;
+	int				eat_cnt;
+	uint64_t		last_meal;
+	pthread_mutex_t	*fork[2];
 	pthread_mutex_t	*start_mt;
-	t_args 			*args;
+	pthread_mutex_t	last_meal_mt;
 };
 
 struct s_queue
 {
-	pthread_mutex_t	queue_mt;
-	t_report    	*papers;
+	int				size;
 	int				front;
 	int				rear;
-	int				size;
+	t_report		*papers;
+	pthread_mutex_t	queue_mt;
 };
 
 #endif

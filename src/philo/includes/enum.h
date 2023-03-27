@@ -6,18 +6,18 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:12:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/26 17:04:39 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/27 18:36:42 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENUM_H
 # define ENUM_H
 
-typedef enum e_proc_state t_proc_state;
-typedef enum e_philo_state t_philo_state;
-typedef enum e_fork_state t_fork_state;
-typedef enum e_state_flag t_state_flag;
-typedef enum e_err   t_err;
+typedef enum e_proc_state	t_proc_state;
+typedef enum e_philo_state	t_philo_state;
+typedef enum e_fork_state	t_fork_state;
+typedef enum e_state_flag	t_state_flag;
+typedef enum e_err			t_err;
 
 enum e_proc_state
 {
@@ -33,7 +33,7 @@ enum e_state_flag
 	SET
 };
 
-enum e_philo_state 
+enum e_philo_state
 {
 	PHILO_INIT,
 	PHILO_FORK,
