@@ -28,6 +28,8 @@
         "unistd.h": "c",
         "stdio.h": "c",
         "string": "c",
-        "mutex.h": "c"
+        "mutex.h": "c",
+        "const.h": "c",
+        "exception": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 10:33:03 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/28 11:11:15 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,5 @@ void	wait_terminate_philo(t_meta *meta)
 		pthread_join(meta->table.tids[i], NULL);
 		i++;
 	}
+	printf(GREEN"Simulation End\n"RESET);
 }
