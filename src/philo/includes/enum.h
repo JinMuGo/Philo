@@ -6,19 +6,22 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:12:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 10:37:02 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/28 11:35:53 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENUM_H
 # define ENUM_H
 
+/*-------------- TYPEDEF --------------*/
 typedef enum e_proc_state	t_proc_state;
 typedef enum e_philo_state	t_philo_state;
 typedef enum e_fork_state	t_fork_state;
 typedef enum e_state_flag	t_state_flag;
 typedef enum e_err			t_err;
+typedef enum e_hand			t_hand;
 
+/*-------------- ENUM --------------*/
 enum e_proc_state
 {
 	DEFAULT,
@@ -56,6 +59,12 @@ enum e_err
 	ERR_INIT_MUTEX,
 	ERR_THD_CREATE,
 	ERR_ENQUEUE,
+};
+
+enum e_hand
+{
+	L,
+	R
 };
 
 #endif

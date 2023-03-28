@@ -13,9 +13,11 @@
 #ifndef DEF_H
 # define DEF_H
 
+/*-------------- INCLUDE --------------*/
 # include "enum.h"
 # include "const.h"
 
+/*-------------- TYPEDEF --------------*/
 typedef struct s_meta		t_meta;
 typedef struct s_philo		t_philo;
 typedef struct s_state		t_state;
@@ -30,6 +32,7 @@ typedef struct s_meta_mutex	t_meta_mutex;
 
 typedef union u_mutex_val	t_u_mutex_val;
 
+/*-------------- UNION --------------*/
 union u_mutex_val
 {
 	int			i;
@@ -37,48 +40,7 @@ union u_mutex_val
 	uint64_t	u;
 };
 
-struct s_mutex
-{
-	t_u_mutex_val	val;
-	pthread_mutex_t	mt;
-};
-
-struct s_table
-{
-	t_philo			*philos;
-	pthread_t		*tids;
-	pthread_mutex_t	*forks;
-};
-
-struct s_args
-{
-	int				num_of_philo;
-	uint64_t		time_to_die;
-	uint64_t		time_to_eat;
-	uint64_t		time_to_sleep;
-	int				num_of_must_eat;
-	uint64_t		start_time_of_sim;
-};
-
-struct s_clerk
-{
-	t_queue	*queue;
-};
-
-struct s_meta_mutex
-{
-	t_mutex			*terminate;
-	pthread_mutex_t	start_mt;
-};
-
-struct s_meta
-{
-	t_args			args;
-	t_clerk			clerk;
-	t_table			table;
-	t_meta_mutex	mutex;
-};
-
+/*-------------- STRUCT --------------*/
 struct s_state
 {
 	t_proc_state	state;
@@ -86,9 +48,18 @@ struct s_state
 
 struct s_report
 {
-	uint64_t		time_stamp;
 	int				num;
+	uint64_t		time_stamp;
 	t_philo_state	state;
+};
+
+struct s_queue
+{
+	int				size;
+	int				front;
+	int				rear;
+	t_report		*papers;
+	pthread_mutex_t	queue_mt;
 };
 
 struct s_philo
@@ -104,13 +75,45 @@ struct s_philo
 	pthread_mutex_t	*start_mt;
 };
 
-struct s_queue
+struct s_args
 {
-	int				size;
-	int				front;
-	int				rear;
-	t_report		*papers;
-	pthread_mutex_t	queue_mt;
+	int				num_of_philo;
+	uint64_t		time_to_die;
+	uint64_t		time_to_eat;
+	uint64_t		time_to_sleep;
+	int				num_of_must_eat;
+	uint64_t		start_time_of_sim;
+};
+struct s_clerk
+{
+	t_queue	*queue;
+};
+
+struct s_mutex
+{
+	t_u_mutex_val	val;
+	pthread_mutex_t	mt;
+};
+
+struct s_table
+{
+	t_philo			*philos;
+	pthread_t		*tids;
+	pthread_mutex_t	*forks;
+};
+
+struct s_meta_mutex
+{
+	t_mutex			*terminate;
+	pthread_mutex_t	start_mt;
+};
+
+struct s_meta
+{
+	t_args			args;
+	t_clerk			clerk;
+	t_table			table;
+	t_meta_mutex	mutex;
 };
 
 #endif
