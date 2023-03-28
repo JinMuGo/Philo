@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:14:07 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/27 18:48:42 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/28 10:59:34 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,24 @@
 #include "utils.h"
 #include "queue.h"
 #include "state_control.h"
+#include "mutex.h"
 
 static bool	check_someone_dead(t_meta *meta)
 {
 	uint64_t	cur_time;
-	uint64_t	last_meal;
+	t_mutex		last_meal;
 	uint64_t	elapsed_time;
 	int			i;
 
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
-		pthread_mutex_lock(&meta->table.philos[i].last_meal_mt); // check
-		last_meal = meta->table.philos[i].last_meal;
-		pthread_mutex_unlock(&meta->table.philos[i].last_meal_mt);
+		get_mutex_value(\
+			&last_meal, \
+			&meta->table.philos[i].last_meal, \
+			sizeof(uint64_t));
 		cur_time = get_ms_time();
-		elapsed_time = cur_time - last_meal;
+		elapsed_time = cur_time - last_meal.val.u;
 		if (elapsed_time > meta->args.time_to_die)
 		{
 			if (meta->args.time_to_die)
@@ -46,18 +48,16 @@ static bool	check_someone_dead(t_meta *meta)
 
 static bool	check_dining_comp(t_meta *meta)
 {
-	int	eat_cnt;
-	int	i;
+	int		i;
+	t_mutex	eat_cnt;
 
 	if (meta->args.num_of_must_eat == -1)
 		return (false);
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
-		pthread_mutex_lock(meta->alert.philos_mt + i);
-		eat_cnt = meta->table.philos[i].eat_cnt;
-		pthread_mutex_unlock(meta->alert.philos_mt + i);
-		if (eat_cnt < meta->args.num_of_must_eat)
+		get_mutex_value(&eat_cnt, &meta->table.philos[i].eat_cnt, sizeof(int));
+		if (eat_cnt.val.i < meta->args.num_of_must_eat)
 			return (false);
 		i++;
 	}

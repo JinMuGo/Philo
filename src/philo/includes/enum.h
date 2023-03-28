@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:12:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/27 18:36:42 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/28 10:37:02 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,10 @@ enum e_state_flag
 
 enum e_philo_state
 {
-	PHILO_INIT,
 	PHILO_FORK,
 	PHILO_EAT,
 	PHILO_SLEEP,
-	PHILO_THINK,
-	PHILO_DIED,
-	PHILO_STOP_DINING
+	PHILO_THINK
 };
 
 enum e_fork_state

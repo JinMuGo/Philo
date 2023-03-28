@@ -16,23 +16,31 @@
 # include "enum.h"
 # include "const.h"
 
-typedef struct s_meta	t_meta;
-typedef struct s_philo	t_philo;
-typedef struct s_state	t_state;
-typedef struct s_args	t_args;
-typedef struct s_table	t_table;
-typedef struct s_queue	t_queue;
-typedef struct s_clerk	t_clerk;
-typedef struct s_report	t_report;
-typedef struct s_alert	t_alert;
+typedef struct s_meta		t_meta;
+typedef struct s_philo		t_philo;
+typedef struct s_state		t_state;
+typedef struct s_args		t_args;
+typedef struct s_table		t_table;
+typedef struct s_queue		t_queue;
+typedef struct s_clerk		t_clerk;
+typedef struct s_report		t_report;
+typedef struct s_mutex		t_mutex;
+typedef struct s_terminate	t_terminate;
+typedef struct s_meta_mutex	t_meta_mutex;
 
-struct s_alert
+typedef union u_mutex_val	t_u_mutex_val;
+
+union u_mutex_val
 {
-	int				ready_cnt;
-	bool			*terminate;
-	pthread_mutex_t	alert_mt;
-	pthread_mutex_t	*terminate_mt;
-	pthread_mutex_t	*philos_mt;
+	int			i;
+	bool		b;
+	uint64_t	u;
+};
+
+struct s_mutex
+{
+	t_u_mutex_val	val;
+	pthread_mutex_t	mt;
 };
 
 struct s_table
@@ -57,14 +65,18 @@ struct s_clerk
 	t_queue	*queue;
 };
 
+struct s_meta_mutex
+{
+	t_mutex			*terminate;
+	pthread_mutex_t	start_mt;
+};
+
 struct s_meta
 {
 	t_args			args;
 	t_clerk			clerk;
 	t_table			table;
-	t_alert			alert;
-	uint64_t		start_time;
-	pthread_mutex_t	start_mt;
+	t_meta_mutex	mutex;
 };
 
 struct s_state
@@ -82,16 +94,14 @@ struct s_report
 struct s_philo
 {
 	int				idx;
-	t_philo_state	state;
 	t_args			*args;
 	t_queue			*box;
-	t_alert			*alert;
 	t_report		report;
-	int				eat_cnt;
-	uint64_t		last_meal;
+	t_mutex			eat_cnt;
+	t_mutex			last_meal;
+	t_mutex			*terminate;
 	pthread_mutex_t	*fork[2];
 	pthread_mutex_t	*start_mt;
-	pthread_mutex_t	last_meal_mt;
 };
 
 struct s_queue

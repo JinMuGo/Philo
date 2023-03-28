@@ -6,13 +6,14 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/27 18:44:39 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/28 10:33:03 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "def.h"
 #include "state_control.h"
+#include "mutex.h"
 
 uint64_t	char_to_uint64(const char *str)
 {
@@ -83,9 +84,7 @@ void	wait_terminate_philo(t_meta *meta)
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
-		pthread_mutex_lock(meta->alert.terminate_mt + i);
-		meta->alert.terminate[i] = true;
-		pthread_mutex_unlock(meta->alert.terminate_mt + i);
+		set_mutex_value(meta->mutex.terminate + i, sizeof(bool), 0);
 		i++;
 	}
 	i = 0;

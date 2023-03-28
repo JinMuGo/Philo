@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:06:24 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/27 19:02:20 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/28 10:48:48 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@ t_report	write_report(t_philo *philo, t_philo_state state)
 
 static bool	check_terminate(t_philo *philo)
 {
-	bool	terminate;
+	t_mutex	terminate;
 
-	pthread_mutex_lock(philo->alert->terminate_mt + philo->idx);
-	terminate = philo->alert->terminate[philo->idx];
-	pthread_mutex_unlock(philo->alert->terminate_mt + philo->idx);
-	return (terminate);
+	get_mutex_value(&terminate, philo->terminate, sizeof(bool));
+	return (terminate.val.b);
 }
 
 static bool	check_right_fork(t_philo *philo)
@@ -63,9 +61,10 @@ void	*begin_life(void *philo_arg)
 	philo = philo_arg;
 	philo->report.num = philo->idx + 1;
 	waiting_for_the_start(philo);
-	pthread_mutex_lock(&philo->last_meal_mt);
-	philo->last_meal = philo->args->start_time_of_sim;
-	pthread_mutex_unlock(&philo->last_meal_mt);
+	set_mutex_value(\
+		&philo->last_meal, \
+		sizeof(uint64_t), \
+		philo->args->start_time_of_sim);
 	if (philo->args->num_of_philo > 1 && philo->report.num % 2 == 0)
 		take_a_nap_during_that_time((philo->args->time_to_eat / 2));
 	a_day_of_philo(philo);

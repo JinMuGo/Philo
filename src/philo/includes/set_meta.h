@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:50:49 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/27 18:38:07 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/28 09:55:19 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SET_META_H
 
 /* set_meta.c */
-bool	set_mutex_arr(pthread_mutex_t *mutex, const int num_of_philo);
 bool	set_meta(t_meta *meta, int ac, char **av);
 
 /* set_args.c */
@@ -27,9 +26,6 @@ bool	set_table(t_table *table, const int num_of_philo, t_meta *meta);
 bool	set_clerk(t_clerk *clerk, const int num_of_philo);
 
 /* set_meta_mutex.c */
-bool	set_meta_mutex(pthread_mutex_t *start_mt);
-
-/* set_alert.c */
-bool	set_alert(t_alert *alert, const int num_of_philo);
+bool	set_meta_mutex(t_meta_mutex *mutex, const int num_of_philo);
 
 #endif

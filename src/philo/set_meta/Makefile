@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/25 14:46:20 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/27 22:58:15 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ SRCS = set_meta.c \
 		set_args.c \
 		set_table.c \
 		set_clerk.c \
-		set_alert.c \
 		set_meta_mutex.c
 
 NAME = set_meta.a
