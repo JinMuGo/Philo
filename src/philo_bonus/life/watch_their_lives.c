@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:14:07 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 13:04:32 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 20:39:32 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 static bool	check_someone_dead(t_meta *meta)
 {
 	uint64_t	cur_time;
-	t_mutex		last_meal;
+	t_sem		last_meal;
 	uint64_t	elapsed_time;
 	int			i;
 
@@ -63,7 +63,7 @@ static void	finish_dining(t_clerk *clerk)
 static bool	check_dining_comp(t_meta *meta)
 {
 	int		i;
-	t_mutex	eat_cnt;
+	t_sem	eat_cnt;
 
 	if (meta->args.num_of_must_eat == -1)
 		return (false);

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:29:16 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 10:59:38 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 20:13:11 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "set_meta.h"
 #include "mutex.h"
 
-static bool	setting_table(t_meta *meta, t_table *table, const int num_of_philo)
+static void	setting_table(t_meta *meta, t_table *table, const int num_of_philo)
 {
 	int	i;
 
@@ -27,37 +27,27 @@ static bool	setting_table(t_meta *meta, t_table *table, const int num_of_philo)
 		table->philos[i].idx = i;
 		table->philos[i].box = meta->clerk.queue;
 		table->philos[i].args = &meta->args;
-		table->philos[i].start_mt = &meta->mutex.start_mt;
-		if (i == 0)
-			table->philos[i].fork[L] = &meta->table.forks[num_of_philo - 1];
-		else
-			table->philos[i].fork[L] = &meta->table.forks[i - 1];
-		table->philos[i].fork[R] = &meta->table.forks[i];
-		table->philos[i].terminate = meta->mutex.terminate + i;
-		if (pthread_mutex_init(&table->philos[i].eat_cnt.mt, NULL))
-			return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
-		if (pthread_mutex_init(&table->philos[i].last_meal.mt, NULL))
-			return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
+		table->philos[i].start_sem = meta->sem.start_sem;
+		table->philos[i].fork_sem = meta->table.fork_sem;
+		table->philos[i].terminate = meta->sem.terminate + i;
+		table->philos[i].eat_cnt.sem = meta->sem.eat_cnt_sem;
+		table->philos[i].last_meal.sem = meta->sem.last_meal_sem;
 		i++;
 	}
-	return (true);
 }
 
 bool	set_table(t_table *table, const int num_of_philo, t_meta *meta)
 {
 	memset(table, 0, sizeof(t_table));
-	table->forks = ft_calloc(sizeof(pthread_mutex_t), num_of_philo);
-	if (table->forks == NULL)
-		return (prt_err(ERR_ALLOC, SET_ERROR));
+	table->fork_sem = sem_open(FORK_SEM_NAME, O_CREAT | O_EXCL, 0644, num_of_philo);
+	if (table->fork_sem == SEM_FAILED)
+		return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
 	table->philos = ft_calloc(sizeof(t_philo), num_of_philo);
 	if (table->philos == NULL)
 		return (prt_err(ERR_ALLOC, SET_ERROR));
-	table->tids = ft_calloc(num_of_philo, sizeof(pthread_t));
-	if (table->tids == NULL)
+	table->pids = ft_calloc(num_of_philo, sizeof(pid_t));
+	if (table->pids == NULL)
 		return (prt_err(ERR_ALLOC, SET_ERROR));
-	if (!init_mutex_arr(table->forks, num_of_philo))
-		return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
-	if (!setting_table(meta, table, num_of_philo))
-		return (prt_err(ERR_ALLOC, SET_ERROR));
+	setting_table(meta, table, num_of_philo);
 	return (true);
 }

@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "def.h": "c",
+        "philo.h": "c",
+        "error.h": "c",
+        "cdefs.h": "c",
+        "utils.h": "c",
+        "mutex.h": "c",
+        "state_control.h": "c"
+    }
+}

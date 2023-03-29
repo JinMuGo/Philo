@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:48:03 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/27 18:45:34 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 20:46:21 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ static bool	is_empty(t_queue *queue)
 	return (queue->rear == queue->front);
 }
 
-t_queue	*queue_init(int size)
+t_queue	*queue_init(int size, const int num_of_philo)
 {
 	t_queue	*queue;
 
 	queue = ft_calloc(1, sizeof(t_queue));
 	if (queue == NULL)
 		return (NULL);
-	if (pthread_mutex_init(&queue->queue_mt, NULL))
+	queue->queue_sem = sem_open(QUEUE_SEM_NAME, O_CREAT | O_EXCL, 0644, num_of_philo);
+	if (queue->queue_sem == SEM_FAILED)
 		return (NULL);
 	queue->size = size;
 	queue->papers = ft_calloc(sizeof(t_report), size);
@@ -43,17 +44,17 @@ t_queue	*queue_init(int size)
 
 bool	enqueue(t_queue *queue, t_report report)
 {
-	pthread_mutex_lock(&queue->queue_mt);
+	sem_wait(queue->queue_sem);
 	if (is_full(queue))
 	{
-		pthread_mutex_unlock(&queue->queue_mt);
+		sem_post(queue->queue_sem);
 		return (false);
 	}
 	else
 	{
 		queue->rear = (queue->rear + 1) % queue->size;
 		queue->papers[queue->rear] = report;
-		pthread_mutex_unlock(&queue->queue_mt);
+		sem_post(queue->queue_sem);
 	}
 	return (true);
 }
@@ -62,15 +63,15 @@ t_report	*dequeue(t_queue *queue)
 {
 	t_report	*node;
 
-	pthread_mutex_lock(&queue->queue_mt);
+	sem_wait(queue->queue_sem);
 	if (is_empty(queue))
-		return (unlock_and_return(&queue->queue_mt, NULL));
+		return (post_and_return(queue->queue_sem, NULL));
 	else
 	{
 		queue->front = (queue->front + 1) % queue->size;
 		node = &queue->papers[queue->front];
 		if (node->num == 0)
-			return (unlock_and_return(&queue->queue_mt, NULL));
-		return (unlock_and_return(&queue->queue_mt, node));
+			return (post_and_return(queue->queue_sem, NULL));
+		return (post_and_return(queue->queue_sem, node));
 	}
 }

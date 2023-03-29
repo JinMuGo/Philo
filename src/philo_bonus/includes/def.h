@@ -26,14 +26,14 @@ typedef struct s_table		t_table;
 typedef struct s_queue		t_queue;
 typedef struct s_clerk		t_clerk;
 typedef struct s_report		t_report;
-typedef struct s_mutex		t_mutex;
 typedef struct s_terminate	t_terminate;
-typedef struct s_meta_mutex	t_meta_mutex;
+typedef struct s_meta_sem	t_meta_sem;
+typedef struct s_sem		t_sem;
 
-typedef union u_mutex_val	t_u_mutex_val;
+typedef union u_sem_val	t_u_sem_val;
 
 /*-------------- UNION --------------*/
-union u_mutex_val
+union u_sem_val
 {
 	int			i;
 	bool		b;
@@ -59,13 +59,13 @@ struct s_queue
 	int				front;
 	int				rear;
 	t_report		*papers;
-	pthread_mutex_t	queue_mt;
+	sem_t			*queue_sem; // count_sem
 };
 
-struct s_mutex
+struct s_sem
 {
-	t_u_mutex_val	val;
-	pthread_mutex_t	mt;
+	t_u_sem_val	val;
+	sem_t		*sem;
 };
 
 struct s_philo
@@ -74,11 +74,11 @@ struct s_philo
 	t_args			*args;
 	t_queue			*box;
 	t_report		report;
-	t_mutex			eat_cnt;
-	t_mutex			last_meal;
-	t_mutex			*terminate;
-	pthread_mutex_t	*fork[2];
-	pthread_mutex_t	*start_mt;
+	t_sem			eat_cnt; // count sem (main or self)
+	t_sem			last_meal; // count sem (main or self)
+	t_sem			*terminate; // binary sem
+	sem_t			*fork_sem; // count sem의 pointer // 해당 세마포의 개수가 2 이상일 때만 잡게 하자.
+	sem_t			*start_sem; // binary sem
 };
 
 struct s_args
@@ -98,14 +98,17 @@ struct s_clerk
 struct s_table
 {
 	t_philo			*philos;
-	pthread_t		*tids;
-	pthread_mutex_t	*forks;
+	pid_t			*pids;
+	sem_t			*fork_sem;
 };
 
-struct s_meta_mutex
+struct s_meta_sem
 {
-	t_mutex			*terminate;
-	pthread_mutex_t	start_mt;
+	t_sem			*terminate; // terminate값이 있어야하고 이에 접근하기 위한 sem_t가 ㅣㅆ어야 한다.
+	sem_t			*start_sem; // bi
+	sem_t			*terminate_sem; // count
+	sem_t			*eat_cnt_sem; // count
+	sem_t			*last_meal_sem; // count
 };
 
 struct s_meta
@@ -113,7 +116,7 @@ struct s_meta
 	t_args			args;
 	t_clerk			clerk;
 	t_table			table;
-	t_meta_mutex	mutex;
+	t_meta_sem		sem;
 };
 
 #endif

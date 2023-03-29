@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 11:10:00 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 20:44:52 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,28 +56,29 @@ void	*ft_calloc(size_t count, size_t size)
 	return (dst);
 }
 
-void	*unlock_and_return(pthread_mutex_t *mutex, void *val)
+void	*post_and_return(sem_t *sem, void *val)
 {
-	pthread_mutex_unlock(mutex);
+	sem_post(sem);
 	return (val);
 }
 
 bool	wait_terminate_philo(t_meta *meta)
 {
 	int	i;
+	int	exit_status;
 
 	if (get_proc_state())
 		return (false);
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
-		set_mutex_value(meta->mutex.terminate + i, sizeof(bool), 0);
+		set_mutex_value(meta->sem.terminate + i, sizeof(bool), 0);
 		i++;
 	}
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
-		pthread_join(meta->table.tids[i], NULL);
+		waitpid(meta->table.pids[i], &exit_status, 0);
 		i++;
 	}
 	printf(GREEN"Simulation End\n"RESET);
@@ -86,6 +87,6 @@ bool	wait_terminate_philo(t_meta *meta)
 
 void	waiting_for_the_start(t_philo *philo)
 {
-	pthread_mutex_lock(philo->start_mt);
-	pthread_mutex_unlock(philo->start_mt);
+	sem_wait(philo->start_sem);
+	sem_post(philo->start_sem);
 }
