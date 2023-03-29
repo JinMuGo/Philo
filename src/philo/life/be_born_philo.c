@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:17:15 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 10:08:56 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 10:27:29 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ bool	be_born_philo(t_meta *meta)
 			return (prt_err(ERR_THD_CREATE, THD_ERROR));
 		i++;
 	}
-	meta->args.start_time_of_sim = get_ms_time();
+	meta->args.start_time_of_sim = get_micro_time();
 	pthread_mutex_unlock(&meta->mutex.start_mt);
 	if (meta->args.time_to_die)
-		take_a_nap_during_that_time(meta->args.time_to_die);
+		take_a_nap_during_that_time(meta->args.time_to_die * 0.7);
 	return (true);
 }

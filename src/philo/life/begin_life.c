@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:06:24 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 10:48:48 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 09:23:03 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 t_report	write_report(t_philo *philo, t_philo_state state)
 {
 	const t_report	report = {\
-		(get_ms_time() - philo->args->start_time_of_sim), \
+		(get_micro_time() - philo->args->start_time_of_sim) / 1000, \
 		philo->report.num, \
 		state};
 
@@ -65,7 +65,7 @@ void	*begin_life(void *philo_arg)
 		&philo->last_meal, \
 		sizeof(uint64_t), \
 		philo->args->start_time_of_sim);
-	if (philo->args->num_of_philo > 1 && philo->report.num % 2 == 0)
+	if (philo->args->num_of_philo > 1 && philo->report.num % 2 == 1)
 		take_a_nap_during_that_time((philo->args->time_to_eat / 2));
 	a_day_of_philo(philo);
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:33:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 11:46:15 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 09:23:03 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define UTILS_H
 
 /*------------- TIME.C -------------*/
-uint64_t	get_ms_time(void);
+uint64_t	get_micro_time(void);
 void		take_a_nap_during_that_time(uint64_t that_time);
 
 /*------------- UTILS.C -------------*/

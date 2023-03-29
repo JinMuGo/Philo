@@ -19,9 +19,9 @@
 bool	set_args(t_args *args, int ac, char **av)
 {
 	args->num_of_philo = char_to_uint64(av[1]);
-	args->time_to_die = char_to_uint64(av[2]);
-	args->time_to_eat = char_to_uint64(av[3]);
-	args->time_to_sleep = char_to_uint64(av[4]);
+	args->time_to_die = char_to_uint64(av[2]) * 1000;
+	args->time_to_eat = char_to_uint64(av[3]) * 1000;
+	args->time_to_sleep = char_to_uint64(av[4]) * 1000;
 	if (ac == 6)
 		args->num_of_must_eat = char_to_uint64(av[5]);
 	else

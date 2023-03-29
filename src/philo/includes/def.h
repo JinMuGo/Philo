@@ -48,8 +48,8 @@ struct s_state
 
 struct s_report
 {
-	int				num;
 	uint64_t		time_stamp;
+	int				num;
 	t_philo_state	state;
 };
 
@@ -60,6 +60,12 @@ struct s_queue
 	int				rear;
 	t_report		*papers;
 	pthread_mutex_t	queue_mt;
+};
+
+struct s_mutex
+{
+	t_u_mutex_val	val;
+	pthread_mutex_t	mt;
 };
 
 struct s_philo
@@ -87,12 +93,6 @@ struct s_args
 struct s_clerk
 {
 	t_queue	*queue;
-};
-
-struct s_mutex
-{
-	t_u_mutex_val	val;
-	pthread_mutex_t	mt;
 };
 
 struct s_table

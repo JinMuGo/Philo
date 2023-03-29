@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:46:48 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 10:58:54 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 10:14:24 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	set_mutex_value(t_mutex *dst, size_t size, uint64_t option)
 		if (option)
 			dst->val.u = option;
 		else
-			dst->val.u = get_ms_time();
+			dst->val.u = get_micro_time();
 	}
 	pthread_mutex_unlock(&dst->mt);
 }

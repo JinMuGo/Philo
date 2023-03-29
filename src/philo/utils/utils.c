@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 11:11:15 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 08:28:41 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ uint64_t	char_to_uint64(const char *str)
 	}
 	while (str[i] && ('0' <= str[i] && str[i] <= '9'))
 		result = result * 10 + str[i++] - '0';
-	if (sign == -1 || str[i] != '\0')
+	if (sign == -1 || str[i] != '\0' || result == 0)
 	{
 		set_proc_state(SET_ERROR);
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:14:07 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 11:12:39 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 09:52:25 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ static bool	check_someone_dead(t_meta *meta)
 			&last_meal, \
 			&meta->table.philos[i].last_meal, \
 			sizeof(uint64_t));
-		cur_time = get_ms_time();
+		cur_time = get_micro_time();
 		elapsed_time = cur_time - last_meal.val.u;
 		if (elapsed_time > meta->args.time_to_die)
 		{
 			if (meta->args.time_to_die)
-				printf(RED"%llu %d died\n"RESET, elapsed_time, i + 1);
+				printf(RED"%llu %d died\n"RESET, elapsed_time / 1000, i + 1);
 			else
 				printf(RED"%llu %d died\n"RESET, meta->args.time_to_die, i + 1);
 			return (true);

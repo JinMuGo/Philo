@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:42:09 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/27 18:44:11 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 10:05:00 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*get_philo_state_msg(t_philo_state state)
 
 void	output(t_report *report)
 {
-	if (report == NULL || report->num == 0)
+	if (report == NULL)
 		return ;
 	printf(\
 		"%llu %d %s", \
