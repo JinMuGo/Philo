@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "state_control.h": "c",
+        "queue.h": "c",
+        "error.h": "c",
+        "def.h": "c",
+        "set_meta.h": "c",
+        "philo.h": "c"
+    }
+}
