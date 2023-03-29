@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/27 18:21:53 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/29 13:04:03 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ endif
 include $(TOPDIR)/config/Rules.mk
 include $(TOPDIR)/config/color_rules.mk
 
-SRCS = 	life_goes_on_until_death.c \
+SRCS = 	watch_their_lives.c \
 		be_born_philo.c \
 		begin_life.c \
 		eat.c \

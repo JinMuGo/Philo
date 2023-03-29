@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   life_goes_on_until_death.c                         :+:      :+:    :+:   */
+/*   watch_their_lives.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:14:07 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 11:32:10 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 13:04:32 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static bool	check_dining_comp(t_meta *meta)
 	return (true);
 }
 
-bool	life_goes_on_until_death(t_meta *meta)
+bool	watch_their_lives(t_meta *meta)
 {
 	if (get_proc_state())
 		return (false);

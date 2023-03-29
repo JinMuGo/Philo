@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 10:52:28 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 13:05:23 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	if (!be_born_philo(&meta))
 		return (EXIT_FAILURE);
-	if (!life_goes_on_until_death(&meta))
+	if (!watch_their_lives(&meta))
 		return (EXIT_FAILURE);
 	if (!wait_terminate_philo(&meta))
 		return (EXIT_FAILURE);
