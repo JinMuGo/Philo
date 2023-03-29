@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 08:28:41 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 11:10:00 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ uint64_t	char_to_uint64(const char *str)
 	int			sign;
 	int			i;
 
-	if (get_proc_state() == SET_ERROR)
+	if (get_proc_state())
 		return (0);
 	result = 0;
 	sign = 1;
@@ -56,31 +56,18 @@ void	*ft_calloc(size_t count, size_t size)
 	return (dst);
 }
 
-void	destroy_mutex_arr(pthread_mutex_t *arr, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		pthread_mutex_destroy(arr + i);
-		i++;
-	}
-	free(arr);
-}
-
 void	*unlock_and_return(pthread_mutex_t *mutex, void *val)
 {
 	pthread_mutex_unlock(mutex);
 	return (val);
 }
 
-void	wait_terminate_philo(t_meta *meta)
+bool	wait_terminate_philo(t_meta *meta)
 {
 	int	i;
 
 	if (get_proc_state())
-		return ;
+		return (false);
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
@@ -94,4 +81,11 @@ void	wait_terminate_philo(t_meta *meta)
 		i++;
 	}
 	printf(GREEN"Simulation End\n"RESET);
+	return (true);
+}
+
+void	waiting_for_the_start(t_philo *philo)
+{
+	pthread_mutex_lock(philo->start_mt);
+	pthread_mutex_unlock(philo->start_mt);
 }

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:29:16 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 10:51:04 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 10:59:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ bool	set_table(t_table *table, const int num_of_philo, t_meta *meta)
 	table->tids = ft_calloc(num_of_philo, sizeof(pthread_t));
 	if (table->tids == NULL)
 		return (prt_err(ERR_ALLOC, SET_ERROR));
-	if (!setting_table(meta, table, num_of_philo))
-		return (prt_err(ERR_ALLOC, SET_ERROR));
 	if (!init_mutex_arr(table->forks, num_of_philo))
 		return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
+	if (!setting_table(meta, table, num_of_philo))
+		return (prt_err(ERR_ALLOC, SET_ERROR));
 	return (true);
 }

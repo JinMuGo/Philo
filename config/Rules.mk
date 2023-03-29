@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/05 14:02:20 by jgo               #+#    #+#              #
-#    Updated: 2023/03/25 15:19:12 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/29 10:31:55 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@
 .DEFAULT_GOAL = all
 
 PROJECT_NAME = philo
+BONUS_NAME = philo_bonus
 
-MANDATORY_DIR = philo
-BONUS_DIR = philo_bonus
+MANDATORY_DIR = $(PROJECT_NAME)
+BONUS_DIR = $(BONUS_NAME)
 
 MANDATORY_LIB_DIR = src/$(MANDATORY_DIR)/lib
 BONUS_LIB_DIR = src/$(BONUD_DIR)/lib

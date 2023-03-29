@@ -6,13 +6,25 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 10:57:06 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 11:11:18 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "def.h"
 #include "utils.h"
+#include "mutex.h"
+
+static void	clear_clerk(t_clerk *clerk)
+{
+	if (clerk->queue == NULL)
+		return ;
+	if (clerk->queue->papers)
+		free(clerk->queue->papers);
+	pthread_mutex_destroy(&clerk->queue->queue_mt);
+	if (clerk->queue)
+		free(clerk->queue);
+}
 
 static void	clear_philos(t_philo *philos, const int num_of_philo)
 {
@@ -48,10 +60,7 @@ static void	clear_meta_mutex(t_meta_mutex *mutex)
 
 void	clear_all_asset(t_meta *meta)
 {
-	if (meta->clerk.queue && meta->clerk.queue->papers)
-		free(meta->clerk.queue->papers);
-	if (meta->clerk.queue)
-		free(meta->clerk.queue);
+	clear_clerk(&meta->clerk);
 	clear_table(&meta->table, meta->args.num_of_philo);
 	clear_meta_mutex(&meta->mutex);
 }

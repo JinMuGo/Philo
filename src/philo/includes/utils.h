@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:33:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 09:23:03 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 11:10:43 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void		take_a_nap_during_that_time(uint64_t that_time);
 int			char_to_uint64(const char *str);
 void		*ft_calloc(size_t count, size_t size);
 void		*unlock_and_return(pthread_mutex_t *mutex, void *val);
-void		destroy_mutex_arr(pthread_mutex_t *arr, int size);
-void		wait_terminate_philo(t_meta *meta);
+bool		wait_terminate_philo(t_meta *meta);
+void		waiting_for_the_start(t_philo *philo);
 
 /*------------- OUTPUT.C -------------*/
 void		output(t_report *report);

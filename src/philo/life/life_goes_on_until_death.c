@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:14:07 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 09:52:25 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 10:53:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ static bool	check_dining_comp(t_meta *meta)
 	return (true);
 }
 
-void	life_goes_on_until_death(t_meta *meta)
+bool	life_goes_on_until_death(t_meta *meta)
 {
 	if (get_proc_state())
-		return ;
+		return (false);
 	while (!check_someone_dead(meta) && !check_dining_comp(meta))
 		output(dequeue(meta->clerk.queue));
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:46:48 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 10:14:24 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 11:09:57 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 #include "def.h"
 #include "mutex.h"
 #include "utils.h"
+
+void	destroy_mutex_arr(pthread_mutex_t *arr, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		pthread_mutex_destroy(arr + i);
+		i++;
+	}
+	free(arr);
+}
 
 bool	init_mutex_arr(pthread_mutex_t *mutex, const int num_of_philo)
 {
@@ -72,10 +85,4 @@ void	set_mutex_value(t_mutex *dst, size_t size, uint64_t option)
 			dst->val.u = get_micro_time();
 	}
 	pthread_mutex_unlock(&dst->mt);
-}
-
-void	waiting_for_the_start(t_philo *philo)
-{
-	pthread_mutex_lock(philo->start_mt);
-	pthread_mutex_unlock(philo->start_mt);
 }

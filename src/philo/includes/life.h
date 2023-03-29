@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:07:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 11:44:34 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 10:56:04 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_report	write_report(t_philo *philo, t_philo_state state);
 void		*begin_life(void *philo_arg);
 
 /*---- LIFE_GOES_ON_UNTILL_DEATH.C ----*/
-void		life_goes_on_until_death(t_meta *meta);
+bool		life_goes_on_until_death(t_meta *meta);
 
 /*---------- BE_BORN_PHILO.C ----------*/
 bool		be_born_philo(t_meta *meta);

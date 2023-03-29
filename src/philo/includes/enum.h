@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:12:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 11:35:53 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 10:45:56 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ enum e_proc_state
 	DEFAULT,
 	SET_ERROR,
 	THD_ERROR,
-	QUE_ERROR
+	QUE_ERROR,
+	TIME_ERROR
 };
 
 enum e_state_flag

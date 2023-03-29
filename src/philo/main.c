@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 10:57:44 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 10:52:28 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	main(int ac, char **av)
 		return (prt_err(ERR_ARGS, SET_ERROR));
 	if (!set_meta(&meta, ac, av))
 		return (EXIT_FAILURE);
-	be_born_philo(&meta);
-	life_goes_on_until_death(&meta);
-	wait_terminate_philo(&meta);
-	clear_all_asset(&meta);
-	if (get_proc_state())
+	if (!be_born_philo(&meta))
 		return (EXIT_FAILURE);
-	else
-		return (EXIT_SUCCESS);
+	if (!life_goes_on_until_death(&meta))
+		return (EXIT_FAILURE);
+	if (!wait_terminate_philo(&meta))
+		return (EXIT_FAILURE);
+	clear_all_asset(&meta);
+	return (EXIT_SUCCESS);
 }

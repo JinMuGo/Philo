@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:53:38 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/28 11:44:44 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 11:10:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /*------------- MUTEX.C -------------*/
 bool	init_mutex_arr(pthread_mutex_t *mutex, const int num_of_philo);
 bool	init_mutex_struct_arr(t_mutex *mutex, const int num_of_philo);
-void	waiting_for_the_start(t_philo *philo);
 void	get_mutex_value(t_mutex *dst, t_mutex *src, size_t size);
 void	set_mutex_value(t_mutex *dst, size_t size, uint64_t option);
+void	destroy_mutex_arr(pthread_mutex_t *arr, int size);
 
 #endif
