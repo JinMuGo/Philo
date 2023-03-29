@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/05 14:02:20 by jgo               #+#    #+#              #
-#    Updated: 2023/03/29 10:31:55 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/29 15:36:52 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ BONUS_NAME = philo_bonus
 MANDATORY_DIR = $(PROJECT_NAME)
 BONUS_DIR = $(BONUS_NAME)
 
-MANDATORY_LIB_DIR = src/$(MANDATORY_DIR)/lib
-BONUS_LIB_DIR = src/$(BONUD_DIR)/lib
+BONUS_LIB_DIR = src/$(MANDATORY_DIR)/lib
+BONUS_LIB_DIR = src/$(BONUS_DIR)/lib
 
 ARFLAGS = rcs
 CFLAGS = -Wall -Wextra -Werror -MMD -MP
