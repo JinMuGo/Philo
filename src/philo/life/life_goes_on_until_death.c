@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:14:07 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 10:53:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/29 11:32:10 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,20 @@ static bool	check_someone_dead(t_meta *meta)
 	return (false);
 }
 
+static void	finish_dining(t_clerk *clerk)
+{
+	t_report	*report;
+
+	report = dequeue(clerk->queue);
+	while (report->state != PHILO_EAT)
+	{
+		output(report);
+		report = dequeue(clerk->queue);
+	}
+	output(report);
+	printf(CYAN"all philo complete dining!\n"RESET);
+}
+
 static bool	check_dining_comp(t_meta *meta)
 {
 	int		i;
@@ -61,7 +75,7 @@ static bool	check_dining_comp(t_meta *meta)
 			return (false);
 		i++;
 	}
-	printf(CYAN"all philo complete dining!\n"RESET);
+	finish_dining(&meta->clerk);
 	return (true);
 }
 
