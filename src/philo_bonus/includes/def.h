@@ -23,8 +23,6 @@ typedef struct s_philo		t_philo;
 typedef struct s_state		t_state;
 typedef struct s_args		t_args;
 typedef struct s_table		t_table;
-typedef struct s_queue		t_queue;
-typedef struct s_clerk		t_clerk;
 typedef struct s_report		t_report;
 typedef struct s_terminate	t_terminate;
 typedef struct s_meta_sem	t_meta_sem;
@@ -53,15 +51,6 @@ struct s_report
 	t_philo_state	state;
 };
 
-struct s_queue
-{
-	int				size;
-	int				front;
-	int				rear;
-	t_report		*papers;
-	sem_t			*queue_sem; // count_sem
-};
-
 struct s_sem
 {
 	t_u_sem_val	val;
@@ -72,13 +61,14 @@ struct s_philo
 {
 	int				idx;
 	t_args			*args;
-	t_queue			*box;
 	t_report		report;
-	t_sem			eat_cnt; // count sem (main or self)
-	t_sem			last_meal; // count sem (main or self)
-	t_sem			*terminate; // binary sem
+	int				eat_cnt; // count sem (main or self)
+	uint64_t		last_meal; // count sem (main or self)
+	bool			terminate; // binary sem
 	sem_t			*fork_sem; // count sem의 pointer // 해당 세마포의 개수가 2 이상일 때만 잡게 하자.
 	sem_t			*start_sem; // binary sem
+	sem_t			*print_sem;
+	pthread_t		moniter_mt;
 };
 
 struct s_args
@@ -90,31 +80,23 @@ struct s_args
 	int				num_of_must_eat;
 	uint64_t		start_time_of_sim;
 };
-struct s_clerk
-{
-	t_queue	*queue;
-};
 
 struct s_table
 {
-	t_philo			*philos;
+	t_philo			philo;
 	pid_t			*pids;
 	sem_t			*fork_sem;
 };
 
 struct s_meta_sem
 {
-	t_sem			*terminate; // terminate값이 있어야하고 이에 접근하기 위한 sem_t가 ㅣㅆ어야 한다.
 	sem_t			*start_sem; // bi
-	sem_t			*terminate_sem; // count
-	sem_t			*eat_cnt_sem; // count
-	sem_t			*last_meal_sem; // count
+	sem_t			*print_sem; // bi //한번에 한명씩 순서대로 출력해야하기 때문에. 여러명이 출력할 수 있다면 순서가 꼬일 수 있다. 
 };
 
 struct s_meta
 {
 	t_args			args;
-	t_clerk			clerk;
 	t_table			table;
 	t_meta_sem		sem;
 };

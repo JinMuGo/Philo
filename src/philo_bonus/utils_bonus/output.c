@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:42:09 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 10:05:00 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/30 18:00:52 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ static char	*get_philo_state_msg(t_philo_state state)
 	return (DIED_MSG);
 }
 
-void	output(t_report *report)
+void	output(sem_t *print_sem, t_report report)
 {
-	if (report == NULL)
+	if (report.num == 0)
 		return ;
+	sem_wait(print_sem);
 	printf(\
 		"%llu %d %s", \
-		report->time_stamp, \
-		report->num, \
-		get_philo_state_msg(report->state));
+		report.time_stamp, \
+		report.num, \
+		get_philo_state_msg(report.state));
+	sem_post(print_sem);
 }

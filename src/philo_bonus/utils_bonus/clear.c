@@ -6,26 +6,13 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/30 10:27:49 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/30 18:05:07 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "def.h"
 #include "utils.h"
-#include "mutex.h"
-
-static void	clear_clerk(t_clerk *clerk)
-{
-	if (clerk->queue == NULL)
-		return ;
-	if (clerk->queue->papers)
-		free(clerk->queue->papers);
-	if (clerk->queue->queue_sem)
-		close_and_unlink_sem(clerk->queue->queue_sem, QUEUE_SEM_NAME);
-	if (clerk->queue)
-		free(clerk->queue);
-}
 
 static void	clear_table(t_table *table)
 {
@@ -53,7 +40,6 @@ static void	clear_meta_sem(t_meta_sem *sem)
 
 void	clear_all_asset(t_meta *meta)
 {
-	clear_clerk(&meta->clerk);
 	clear_table(&meta->table);
 	clear_meta_sem(&meta->sem);
 }

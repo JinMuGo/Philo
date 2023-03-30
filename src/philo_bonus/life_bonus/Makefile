@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/30 09:44:32 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/30 16:27:14 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ ifndef TOPDIR
 endif
 
 include $(TOPDIR)/config/Rules.mk
-include $(TOPDIR)/config/color_rules.mk
+include $(TOPDIR)/config/Color_rules.mk
 
-SRCS = 	watch_their_lives.c \
+SRCS = 	watch_philo_lives.c \
 		be_born_philo.c \
 		begin_life.c \
 		eat.c \

@@ -6,14 +6,13 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/30 11:05:14 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/30 18:04:04 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "def.h"
 #include "state_control.h"
-#include "mutex.h"
 
 uint64_t	char_to_uint64(const char *str)
 {
@@ -69,12 +68,6 @@ bool	wait_terminate_philo(t_meta *meta)
 
 	if (get_proc_state())
 		return (false);
-	i = 0;
-	while (i < meta->args.num_of_philo)
-	{
-		set_sem_value(meta->sem.terminate + i, sizeof(bool), 0);
-		i++;
-	}
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{

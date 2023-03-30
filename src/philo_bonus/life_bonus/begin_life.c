@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:06:24 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 20:38:03 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/30 16:41:29 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,25 @@ t_report	write_report(t_philo *philo, t_philo_state state)
 	return (report);
 }
 
-static bool	check_terminate(t_philo *philo)
-{
-	t_sem	terminate;
-
-	get_sem_value(&terminate, philo->terminate, sizeof(bool));
-	return (terminate.val.b);
-}
-
 static void	a_day_of_philo(t_philo *philo)
 {
-	while (!check_terminate(philo))
+	while (!philo->terminate)
 	{
 		philo_take_fork(philo);
 		philo_eat(philo);
+		if (philo->args->num_of_must_eat == philo->eat_cnt)
+			break ;
 		philo_sleep(philo);
 		philo_think(philo);
 	}
 }
 
-void	begin_life(t_philo	*philo)
+void	begin_life(t_philo	*philo, const int idx)
 {
-	philo->report.num = philo->idx + 1;
+	philo->report.num = idx + 1;
 	waiting_for_the_start(philo);
-	set_sem_value(\
-		&philo->last_meal, \
-		sizeof(uint64_t), \
-		philo->args->start_time_of_sim);
-	if (philo->args->num_of_philo > 1 && philo->report.num % 2 == 1)
-		take_a_nap_during_that_time((philo->args->time_to_eat / 2));
+	philo->last_meal = get_micro_time();
+	pthread_create(&philo->moniter_mt, NULL, watch_philo_lives, philo);
 	a_day_of_philo(philo);
-	exit(EXIT_SUCCESS);
+	pthread_join(philo->moniter_mt, NULL);
 }

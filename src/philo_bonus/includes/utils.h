@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:33:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/30 10:48:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/30 16:46:47 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool		wait_terminate_philo(t_meta *meta);
 void		waiting_for_the_start(t_philo *philo);
 
 /*------------- OUTPUT.C -------------*/
-void		output(t_report *report);
+void		output(sem_t *print_sem, t_report report);
 
 /*------------- CLEAR.C -------------*/
 void		clear_all_asset(t_meta *meta);

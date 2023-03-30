@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:17:15 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/30 10:52:27 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/30 17:54:15 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,45 @@
 #include "utils.h"
 #include "state_control.h"
 
+static	int	create_proc(t_meta *meta)
+{
+	int	i;
+	int	stat_loc;
+
+	i = 0;
+	sem_wait(meta->sem.start_sem);
+	meta->table.philo.args->start_time_of_sim = get_micro_time();
+	while (i < meta->args.num_of_philo)
+	{
+		meta->table.pids[i] = fork();
+		if (meta->table.pids[i] == -1)
+			return (-i);
+		else if (meta->table.pids[i] == 0)
+			begin_life(&meta->table.philo, i);
+		i++;
+	}
+	sem_post(meta->sem.start_sem);
+	waitpid(-1, &stat_loc, 0);
+	if (WIFEXITED(stat_loc))
+	{
+		while (--i >= 0)
+			kill(meta->table.pids[i], SIGINT);
+	}
+	return (1);
+}
+
 bool	be_born_philo(t_meta *meta)
 {
 	int	i;
 
 	if (get_proc_state())
 		return (false);
-	i = 0;
-	sem_wait(meta->sem.start_sem);
-	while (i < meta->args.num_of_philo)
+	i = create_proc(meta);
+	if (i <= 0)
 	{
-		meta->table.pids[i] = fork();
-		if (meta->table.pids[i] == -1)
-			exit(prt_err(ERR_PROC_CREATE, PROC_ERROR));
-		else if (meta->table.pids[i] == 0)
-			begin_life(&meta->table.philos[i]);
-		i++;
+		while (++i <= 0)
+			kill(meta->table.pids[-i], SIGINT);
+		return ((prt_err(ERR_PROC_CREATE, PROC_ERROR)));
 	}
-	meta->args.start_time_of_sim = get_micro_time();
-	sem_post(meta->sem.start_sem);
-	if (meta->args.time_to_die)
-		take_a_nap_during_that_time(meta->args.time_to_die * 0.7);
 	return (true);
 }

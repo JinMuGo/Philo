@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/03/30 10:31:32 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/30 15:59:15 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,13 @@ ifndef TOPDIR
 endif
 
 include $(TOPDIR)/config/Rules.mk
-include $(TOPDIR)/config/color_rules.mk
+include $(TOPDIR)/config/Color_rules.mk
 
 NAME = $(BONUS_NAME)
 
 DIRS =	utils_bonus \
 		error_bonus \
 		life_bonus \
-		clerk_bonus \
 		set_meta_bonus
 
 LIBS = $(addsuffix .a, $(addprefix lib/, $(DIRS)))

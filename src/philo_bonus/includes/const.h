@@ -17,10 +17,8 @@
 
 # define FORK_SEM_NAME "/fork"
 # define START_SEM_NAME "/start"
-# define QUEUE_SEM_NAME "/queue"
-# define TERMINATE_SEM_NAME "/terminate"
-# define EAT_CNT_SEM_NAME "/terminate"
-# define LAST_MEAL_SEM_NAME "/terminate"
+# define PRINT_SEM_NAME "/print"
+# define LIFE_SEM_NAME "/life"
 
 /*--------------  COLOR --------------*/
 # define BOLD					"\e[1m"

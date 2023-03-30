@@ -6,6 +6,11 @@
         "cdefs.h": "c",
         "utils.h": "c",
         "mutex.h": "c",
-        "state_control.h": "c"
+        "state_control.h": "c",
+        "queue.h": "c",
+        "__config": "c",
+        "locale": "c",
+        "ostream": "c",
+        "string": "c"
     }
 }

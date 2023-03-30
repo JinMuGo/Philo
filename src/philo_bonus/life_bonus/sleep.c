@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 09:48:28 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/27 18:42:54 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/30 16:48:39 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 
 void	philo_sleep(t_philo *philo)
 {
-	enqueue(philo->box, write_report(philo, PHILO_SLEEP));
+	output(philo->print_sem, write_report(philo, PHILO_SLEEP));
 	take_a_nap_during_that_time(philo->args->time_to_sleep);
 }

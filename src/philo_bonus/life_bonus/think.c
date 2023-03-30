@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 09:48:28 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/27 18:42:56 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/30 16:48:47 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@
 
 void	philo_think(t_philo *philo)
 {
-	enqueue(philo->box, write_report(philo, PHILO_THINK));
+	enqueue(philo->print_sem, write_report(philo, PHILO_THINK));
 }
