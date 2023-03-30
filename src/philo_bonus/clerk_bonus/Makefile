@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/29 15:36:52 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/30 09:45:18 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,9 @@ endif
 include $(TOPDIR)/config/Rules.mk
 include $(TOPDIR)/config/color_rules.mk
 
-SRCS =	output.c \
-		time.c \
-		utils.c \
-		clear.c \
-		mutex.c \
-		state_control.c
+SRCS = queue.c
 
-NAME = utils.a
+NAME = clerk_bonus.a
 
 OBJS = $(SRCS:.c=.o)
 DEPS = $(SRCS:.c=.d)

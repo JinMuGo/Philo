@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 20:44:52 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/30 11:05:14 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,19 @@ bool	wait_terminate_philo(t_meta *meta)
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
-		set_mutex_value(meta->sem.terminate + i, sizeof(bool), 0);
+		set_sem_value(meta->sem.terminate + i, sizeof(bool), 0);
 		i++;
 	}
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
 		waitpid(meta->table.pids[i], &exit_status, 0);
+		i++;
+	}
+	i = 0;
+	while (i < meta->args.num_of_philo)
+	{
+		kill(meta->table.pids[i], SIGINT);
 		i++;
 	}
 	printf(GREEN"Simulation End\n"RESET);

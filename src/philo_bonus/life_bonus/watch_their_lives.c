@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:14:07 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 20:39:32 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/30 10:27:15 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static bool	check_someone_dead(t_meta *meta)
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
-		get_mutex_value(\
+		get_sem_value(\
 			&last_meal, \
 			&meta->table.philos[i].last_meal, \
 			sizeof(uint64_t));
@@ -70,7 +70,7 @@ static bool	check_dining_comp(t_meta *meta)
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
-		get_mutex_value(&eat_cnt, &meta->table.philos[i].eat_cnt, sizeof(int));
+		get_sem_value(&eat_cnt, &meta->table.philos[i].eat_cnt, sizeof(int));
 		if (eat_cnt.val.i < meta->args.num_of_must_eat)
 			return (false);
 		i++;

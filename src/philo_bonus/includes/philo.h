@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:35:44 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 16:21:40 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/30 11:05:53 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@
 # include <pthread.h>
 # include <stdbool.h>
 # include <semaphore.h>
+# include <signal.h>
 
 #endif

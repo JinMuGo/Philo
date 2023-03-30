@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:48:03 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 20:46:21 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/30 10:49:18 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_queue	*queue_init(int size, const int num_of_philo)
 	queue = ft_calloc(1, sizeof(t_queue));
 	if (queue == NULL)
 		return (NULL);
-	queue->queue_sem = sem_open(QUEUE_SEM_NAME, O_CREAT | O_EXCL, 0644, num_of_philo);
+	queue->queue_sem = sem_open(QUEUE_SEM_NAME, O_CREAT, 0644, num_of_philo);
 	if (queue->queue_sem == SEM_FAILED)
 		return (NULL);
 	queue->size = size;

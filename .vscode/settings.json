@@ -30,6 +30,7 @@
         "string": "c",
         "mutex.h": "c",
         "const.h": "c",
-        "exception": "c"
+        "exception": "c",
+        "enum.h": "c"
     }
 }

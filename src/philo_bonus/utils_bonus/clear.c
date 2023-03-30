@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 21:04:00 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/30 10:27:49 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	clear_clerk(t_clerk *clerk)
 		free(clerk->queue);
 }
 
-static void	clear_table(t_table *table, const int num_of_philo)
+static void	clear_table(t_table *table)
 {
 	if (table->fork_sem)
 		close_and_unlink_sem(table->fork_sem, FORK_SEM_NAME);
@@ -54,6 +54,6 @@ static void	clear_meta_sem(t_meta_sem *sem)
 void	clear_all_asset(t_meta *meta)
 {
 	clear_clerk(&meta->clerk);
-	clear_table(&meta->table, meta->args.num_of_philo);
+	clear_table(&meta->table);
 	clear_meta_sem(&meta->sem);
 }

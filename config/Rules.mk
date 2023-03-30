@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/05 14:02:20 by jgo               #+#    #+#              #
-#    Updated: 2023/03/29 15:36:52 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/30 10:33:25 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,14 @@ BONUS_NAME = philo_bonus
 MANDATORY_DIR = $(PROJECT_NAME)
 BONUS_DIR = $(BONUS_NAME)
 
-BONUS_LIB_DIR = src/$(MANDATORY_DIR)/lib
+MANDATORY_LIB_DIR = src/$(MANDATORY_DIR)/lib
 BONUS_LIB_DIR = src/$(BONUS_DIR)/lib
 
 ARFLAGS = rcs
 CFLAGS = -Wall -Wextra -Werror -MMD -MP
 
-CPPFLAGS = -I$(TOPDIR)/includes $(if $(filter bonus, $(MAKECMDGOALS)), -I$(TOPDIR)/src/$(BONUS_DIR)/includes,-I$(TOPDIR)/src/$(MANDATORY_DIR)/includes)
-LDFLAGS = -lpthread
+CPPFLAGS = -I$(TOPDIR)/includes $(if $(findstring bonus, $(MAKECMDGOALS)), -I$(TOPDIR)/src/$(BONUS_DIR)/includes, -I$(TOPDIR)/src/$(MANDATORY_DIR)/includes)
+LDFLAGS = $(if $(findstring bonus, $(MAKECMDGOALS)), -lpthread, -lpthread) 
 
 # verbose
 Q := $(if $(filter 1,$(V) $(VERBOSE)),,@)
