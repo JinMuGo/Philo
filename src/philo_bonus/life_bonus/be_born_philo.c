@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:17:15 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/31 16:18:23 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/31 20:28:26 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static	int	create_proc(t_meta *meta)
 	int	stat_loc;
 
 	i = 0;
-	sem_wait(meta->sem.start_sem);
+	sem_wait(meta->sem.start_sem); // 0 
 	while (i < meta->args.num_of_philo)
 	{
 		meta->table.pids[i] = fork();

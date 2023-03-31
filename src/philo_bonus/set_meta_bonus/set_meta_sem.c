@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:36:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/31 16:21:31 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/31 21:00:38 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ bool set_meta_sem(t_meta_sem *sem, const int num_of_philo)
 		return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
 	sem->print_sem  = sem_open(START_SEM_NAME, O_CREAT, 0644, 1);
 	if (sem->print_sem  == SEM_FAILED)
-		return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
-	sem->life_sem  = sem_open(LIFE_SEM_NAME, O_CREAT, 0644, num_of_philo);
-	if (sem->life_sem  == SEM_FAILED)
 		return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
 	return (true);
 }

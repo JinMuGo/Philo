@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:29:16 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/31 16:22:18 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/31 21:00:34 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	setting_table(t_meta *meta, t_table *table)
 	table->philo.fork_sem = table->fork_sem;
 	table->philo.start_sem = meta->sem.start_sem;
 	table->philo.print_sem = meta->sem.print_sem;
-	table->philo.life_sem = meta->sem.life_sem;
 }
 
 bool	set_table(t_table *table, const int num_of_philo, t_meta *meta)
