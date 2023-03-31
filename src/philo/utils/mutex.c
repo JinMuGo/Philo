@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:46:48 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 11:09:57 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/31 16:33:22 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ bool	init_mutex_struct_arr(t_mutex *mutex, const int num_of_philo)
 	return (true);
 }
 
-// 값을 얻어오는 행동 int uint64_t bool
-// 값을 쓰는 행동 int uint64_t boo
 void	get_mutex_value(t_mutex *dst, t_mutex *src, size_t size)
 {
 	pthread_mutex_lock(&src->mt);

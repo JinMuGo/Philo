@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/03/23 20:11:23 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/31 16:31:51 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,13 @@ HEADS =	def.h \
  		const.h \
 		enum.h \
 		error.h \
+		life.h \
+		mutex.h \
 		philo.h \
-		utils.h \
+		queue.h \
+		set_meta.h \
 		state_control.h \
-		set_meta.h
+		utils.h
 
 SRCS = main.c
 
