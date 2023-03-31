@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:14:07 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 13:04:32 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/31 16:48:42 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,11 @@ static void	finish_dining(t_clerk *clerk)
 {
 	t_report	*report;
 
-	report = dequeue(clerk->queue);
-	while (report->state != PHILO_EAT)
+	while (!is_empty(clerk->queue))
 	{
-		output(report);
 		report = dequeue(clerk->queue);
+		output(report);
 	}
-	output(report);
 	printf(CYAN"all philo complete dining!\n"RESET);
 }
 
