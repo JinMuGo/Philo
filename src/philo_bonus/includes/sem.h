@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   think.c                                            :+:      :+:    :+:   */
+/*   sem.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 09:48:28 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/31 15:23:36 by jgo              ###   ########.fr       */
+/*   Created: 2023/03/31 15:19:24 by jgo               #+#    #+#             */
+/*   Updated: 2023/03/31 15:19:54 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include "def.h"
-#include "life.h"
-#include "utils.h"
+#ifndef SEM_H
+# define SEM_H
 
-void	philo_think(t_philo *philo)
-{
-	output(philo->print_sem, write_report(philo, PHILO_THINK));
-}
+void	close_and_unlink_sem(sem_t *sem, const char *name);
+
+#endif

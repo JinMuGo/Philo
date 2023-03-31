@@ -69,6 +69,7 @@ struct s_philo
 	sem_t			*start_sem; // binary sem
 	sem_t			*print_sem;
 	pthread_t		moniter_mt;
+	sem_t			*life_sem;
 };
 
 struct s_args
@@ -92,6 +93,7 @@ struct s_meta_sem
 {
 	sem_t			*start_sem; // bi
 	sem_t			*print_sem; // bi //한번에 한명씩 순서대로 출력해야하기 때문에. 여러명이 출력할 수 있다면 순서가 꼬일 수 있다. 
+	sem_t			*life_sem;
 };
 
 struct s_meta

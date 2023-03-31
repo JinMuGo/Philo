@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 09:48:28 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/30 16:48:25 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/31 16:22:08 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 #include "def.h"
 #include "utils.h"
 #include "life.h"
-#include "mutex.h"
 
 void	philo_eat(t_philo *philo)
 {
+	sem_wait(philo->life_sem);
 	philo->last_meal = get_micro_time();
+	sem_post(philo->life_sem);
 	output(philo->print_sem, write_report(philo, PHILO_EAT));
 	take_a_nap_during_that_time(philo->args->time_to_eat);
 	sem_post(philo->fork_sem);

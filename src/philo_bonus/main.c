@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:34:52 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/30 16:25:34 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/31 15:16:57 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "set_meta.h"
 #include "life.h"
 #include "state_control.h"
-#include "queue.h"
 
 int	main(int ac, char **av)
 {

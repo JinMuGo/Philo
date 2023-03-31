@@ -11,6 +11,8 @@
         "__config": "c",
         "locale": "c",
         "ostream": "c",
-        "string": "c"
+        "string": "c",
+        "__locale": "c",
+        "set_meta.h": "c"
     }
 }

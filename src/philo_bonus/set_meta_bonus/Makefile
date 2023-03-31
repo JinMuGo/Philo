@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/30 15:59:15 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/31 15:24:23 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ include $(TOPDIR)/config/Color_rules.mk
 SRCS = set_meta.c \
 		set_args.c \
 		set_table.c \
-		set_clerk.c \
 		set_meta_sem.c
 
 NAME = set_meta_bonus.a

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:06:24 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/30 16:41:29 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/31 16:20:15 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "utils.h"
 #include "err.h"
 #include "life.h"
-#include "mutex.h"
 
 t_report	write_report(t_philo *philo, t_philo_state state)
 {
@@ -40,11 +39,14 @@ static void	a_day_of_philo(t_philo *philo)
 	}
 }
 
+
+
 void	begin_life(t_philo	*philo, const int idx)
 {
 	philo->report.num = idx + 1;
 	waiting_for_the_start(philo);
-	philo->last_meal = get_micro_time();
+	philo->args->start_time_of_sim = get_micro_time();
+	philo->last_meal = philo->args->start_time_of_sim;
 	pthread_create(&philo->moniter_mt, NULL, watch_philo_lives, philo);
 	a_day_of_philo(philo);
 	pthread_join(philo->moniter_mt, NULL);

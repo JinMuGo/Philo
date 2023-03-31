@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:17:15 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/30 17:54:15 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/31 16:18:23 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static	int	create_proc(t_meta *meta)
 
 	i = 0;
 	sem_wait(meta->sem.start_sem);
-	meta->table.philo.args->start_time_of_sim = get_micro_time();
 	while (i < meta->args.num_of_philo)
 	{
 		meta->table.pids[i] = fork();
@@ -32,12 +31,14 @@ static	int	create_proc(t_meta *meta)
 			return (-i);
 		else if (meta->table.pids[i] == 0)
 			begin_life(&meta->table.philo, i);
+		printf("idx : %d\n", i);
 		i++;
 	}
 	sem_post(meta->sem.start_sem);
 	waitpid(-1, &stat_loc, 0);
 	if (WIFEXITED(stat_loc))
 	{
+		printf("i'm done\n");
 		while (--i >= 0)
 			kill(meta->table.pids[i], SIGINT);
 	}

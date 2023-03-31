@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/30 15:59:15 by jgo              ###   ########.fr        #
+#    Updated: 2023/03/31 15:19:16 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,11 @@ endif
 include $(TOPDIR)/config/Rules.mk
 include $(TOPDIR)/config/Color_rules.mk
 
-SRCS =	output.c \
+SRCS =	sem.c \
+		output.c \
 		time.c \
 		utils.c \
 		clear.c \
-		mutex.c \
 		state_control.c
 
 NAME = utils_bonus.a
