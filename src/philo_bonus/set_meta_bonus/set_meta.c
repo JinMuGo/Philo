@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:17:17 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/31 15:59:26 by jgo              ###   ########.fr       */
+/*   Updated: 2023/03/31 22:05:43 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	set_meta(t_meta *meta, int ac, char **av)
 	memset(meta, 0, sizeof(t_meta));
 	if (!set_args(&meta->args, ac, av))
 		return (false);
-	if (!set_meta_sem(&meta->sem, meta->args.num_of_philo))
+	if (!set_meta_sem(&meta->sem))
 		return (false);
 	if (!set_table(&meta->table, meta->args.num_of_philo, meta))
 		return (false);

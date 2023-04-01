@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:17:15 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/31 20:28:26 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 09:12:44 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ static	int	create_proc(t_meta *meta)
 			return (-i);
 		else if (meta->table.pids[i] == 0)
 			begin_life(&meta->table.philo, i);
-		printf("idx : %d\n", i);
 		i++;
 	}
 	sem_post(meta->sem.start_sem);
 	waitpid(-1, &stat_loc, 0);
 	if (WIFEXITED(stat_loc))
 	{
-		printf("i'm done\n");
 		while (--i >= 0)
 			kill(meta->table.pids[i], SIGINT);
 	}

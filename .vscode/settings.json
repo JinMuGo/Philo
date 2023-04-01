@@ -31,6 +31,7 @@
         "mutex.h": "c",
         "const.h": "c",
         "exception": "c",
-        "enum.h": "c"
+        "enum.h": "c",
+        "__locale": "c"
     }
 }

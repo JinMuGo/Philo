@@ -68,9 +68,10 @@ struct s_philo
 	sem_t			*fork_sem; // count sem의 pointer // 해당 세마포의 개수가 2 이상일 때만 잡게 하자.
 	sem_t			*start_sem; // binary sem
 	sem_t			*print_sem;
-	pthread_t		moniter_mt;
+	pthread_t		moniter_thd;
 	sem_t			*life_sem;
 	sem_t			*philo_sem;
+	pid_t			*pids;
 };
 
 struct s_args

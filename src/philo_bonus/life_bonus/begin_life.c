@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 14:06:24 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/31 21:02:06 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 09:09:39 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,12 @@ static void	a_day_of_philo(t_philo *philo)
 
 void	begin_life(t_philo	*philo, const int idx)
 {
-	sem_t	*life_sem;
-
+	philo->idx = idx;
 	philo->report.num = idx + 1;
 	waiting_for_the_start(philo);
-	life_sem  = sem_open(LIFE_SEM_NAME, O_CREAT, 0644, 1);
-	if (life_sem  == SEM_FAILED)
-		return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
 	philo->args->start_time_of_sim = get_micro_time();
 	philo->last_meal = philo->args->start_time_of_sim;
-	pthread_create(&philo->moniter_mt, NULL, watch_philo_lives, philo);
-	pthread_detach(philo->moniter_mt);
+	pthread_create(&philo->moniter_thd, NULL, watch_philo_lives, philo);
 	a_day_of_philo(philo);
+	pthread_detach(philo->moniter_thd);
 }

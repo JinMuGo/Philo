@@ -6,12 +6,13 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:29:16 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/31 21:00:34 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 09:11:40 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "def.h"
+#include "sem.h"
 #include "error.h"
 #include "utils.h"
 #include "set_meta.h"
@@ -22,11 +23,13 @@ static void	setting_table(t_meta *meta, t_table *table)
 	table->philo.fork_sem = table->fork_sem;
 	table->philo.start_sem = meta->sem.start_sem;
 	table->philo.print_sem = meta->sem.print_sem;
+	table->philo.pids = meta->table.pids;
 }
 
 bool	set_table(t_table *table, const int num_of_philo, t_meta *meta)
 {
 	memset(table, 0, sizeof(t_table));
+	close_and_unlink_sem(table->fork_sem, FORK_SEM_NAME);
 	table->fork_sem = sem_open(FORK_SEM_NAME, O_CREAT, 0644, num_of_philo);
 	if (table->fork_sem == SEM_FAILED)
 		return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
