@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 09:48:28 by jgo               #+#    #+#             */
-/*   Updated: 2023/04/01 19:23:29 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 21:15:09 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 void	philo_eat(t_philo *philo)
 {
-	sem_wait(philo->last_meal_sem);
+	if (sem_wait(philo->last_meal_sem))
+		sem_post(philo->terminate_sem);
 	philo->last_meal = get_micro_time();
 	sem_post(philo->last_meal_sem);
 	output(philo->print_sem, write_report(philo, PHILO_EAT));

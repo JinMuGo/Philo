@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:17:15 by jgo               #+#    #+#             */
-/*   Updated: 2023/04/01 19:23:40 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 21:19:57 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,19 @@ static void	*meal_counter(void *arg)
 	cnt = 0;
 	while (true)
 	{
-		sem_wait(meta->sem.counter_sem);
+		if (sem_wait(meta->sem.counter_sem) == SC_ERR)
+		{
+			sem_post(meta->sem.terminate_sem);
+			break ;
+		}
 		if (++cnt == meta->args.num_of_must_eat)
 		{
-			sem_wait(meta->sem.print_sem);
+			if (sem_wait(meta->sem.print_sem) == SC_ERR)
+				sem_post(meta->sem.terminate_sem);
 			printf(CYAN"all philo complete dining!\n"RESET);
 			sem_post(meta->sem.terminate_sem);
 			break ;
+			// 이때 종료 되면 philo의 philo_sem_name이 leaks이 나지 않을까?
 		}
 	}
 	return (NULL);
@@ -46,7 +52,7 @@ static	int	create_philo(t_meta *meta)
 	while (i < meta->args.num_of_philo)
 	{
 		meta->table.pids[i] = fork();
-		if (meta->table.pids[i] == -1)
+		if (meta->table.pids[i] == SC_ERR)
 			return (-i);
 		else if (meta->table.pids[i] == 0)
 		{
@@ -55,7 +61,8 @@ static	int	create_philo(t_meta *meta)
 		}
 		i++;
 	}
-	sem_wait(meta->sem.terminate_sem);
+	if (sem_wait(meta->sem.terminate_sem) == SC_ERR)
+		return (-i);
 	return (1);
 }
 
@@ -66,15 +73,17 @@ bool	be_born_philo(t_meta *meta)
 	if (get_proc_state())
 		return (false);
 	if (meta->args.num_of_must_eat != -1)
-		pthread_create(&meta->meal_counter, NULL, meal_counter, meta);
+	{
+		if (pthread_create(&meta->meal_counter, NULL, meal_counter, meta) ||
+			pthread_detach(meta->meal_counter))
+		return (prt_err(ERR_THD_CREATE, THD_ERROR));
+	}
 	is_err = create_philo(meta);
 	if (is_err <= 0)
 	{
-		pthread_detach(meta->meal_counter);
 		while (++is_err <= 0)
 			kill(meta->table.pids[-is_err], SIGINT);
 		return ((prt_err(ERR_PROC_CREATE, PROC_ERROR)));
 	}
-	pthread_detach(meta->meal_counter);
 	return (true);
 }

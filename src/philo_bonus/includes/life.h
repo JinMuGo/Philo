@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:07:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/04/01 19:22:30 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 20:28:32 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		philo_sleep(t_philo *philo);
 
 /*----------- BEGIN_LIFE.C -----------*/
 t_report	write_report(t_philo *philo, t_philo_state state);
-void		begin_life(t_philo	*philo, const int idx);
+bool		begin_life(t_philo	*philo, const int idx);
 
 /*---- WATCH_PHILO_LIVES.C ----*/
 void		*watch_philo_lives(void *arg);

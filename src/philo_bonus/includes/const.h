@@ -14,6 +14,7 @@
 # define CONST_H
 
 # define FT 42
+# define SC_ERR -1
 
 # define FORK_SEM_NAME "/fork"
 # define COUNTER_SEM_NAME "/counter"

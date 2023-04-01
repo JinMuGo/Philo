@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:09:46 by jgo               #+#    #+#             */
-/*   Updated: 2023/04/01 10:59:43 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 21:17:46 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	clear_meta_sem(t_meta_sem *sem)
 		close_and_unlink_sem(sem->counter_sem, COUNTER_SEM_NAME);
 	if (sem->print_sem)
 		close_and_unlink_sem(sem->print_sem, PRINT_SEM_NAME);
+	if (sem->terminate_sem)
+		close_and_unlink_sem(sem->terminate_sem, TERM_SEM_NAME);
 }
 
 void	clear_all_asset(t_meta *meta)
