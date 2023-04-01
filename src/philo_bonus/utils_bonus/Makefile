@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/31 15:19:16 by jgo              ###   ########.fr        #
+#    Updated: 2023/04/01 17:58:20 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS =	sem.c \
 		time.c \
 		utils.c \
 		clear.c \
+		make_philo_sem_name.c \
 		state_control.c
 
 NAME = utils_bonus.a

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/04/01 11:00:11 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 19:29:17 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,6 @@ void	*ft_calloc(size_t count, size_t size)
 	else
 		return (NULL);
 	return (dst);
-}
-
-void	*post_and_return(sem_t *sem, void *val)
-{
-	sem_post(sem);
-	return (val);
 }
 
 bool	wait_terminate_philo(t_meta *meta)

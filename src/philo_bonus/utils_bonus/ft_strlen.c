@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sem.h                                              :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
+/*   By: jgo <jgo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/31 15:19:24 by jgo               #+#    #+#             */
-/*   Updated: 2023/04/01 19:29:30 by jgo              ###   ########.fr       */
+/*   Created: 2022/07/06 14:17:23 by jgo               #+#    #+#             */
+/*   Updated: 2022/11/17 11:07:02 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SEM_H
-# define SEM_H
+#include "libft.h"
 
-void	close_and_unlink_sem(sem_t *sem, const char *name);
-void	*post_and_return(sem_t *sem, void *val);
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
 
-#endif
+	len = 0;
+	while (s && s[len])
+		len++;
+	return (len);
+}

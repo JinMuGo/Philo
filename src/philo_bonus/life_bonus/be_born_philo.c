@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:17:15 by jgo               #+#    #+#             */
-/*   Updated: 2023/04/01 11:28:02 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 19:23:40 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 static void	*meal_counter(void *arg)
 {
-	t_meta *meta;
+	t_meta	*meta;
 	int		cnt;
 
 	meta = arg;
@@ -38,7 +38,7 @@ static void	*meal_counter(void *arg)
 	return (NULL);
 }
 
-static	int	create_proc(t_meta *meta)
+static	int	create_philo(t_meta *meta)
 {
 	int	i;
 
@@ -67,7 +67,7 @@ bool	be_born_philo(t_meta *meta)
 		return (false);
 	if (meta->args.num_of_must_eat != -1)
 		pthread_create(&meta->meal_counter, NULL, meal_counter, meta);
-	is_err = create_proc(meta);
+	is_err = create_philo(meta);
 	if (is_err <= 0)
 	{
 		pthread_detach(meta->meal_counter);

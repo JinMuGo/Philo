@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:33:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/04/01 10:59:24 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 19:29:22 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void		take_a_nap_during_that_time(uint64_t that_time);
 /*------------- UTILS.C -------------*/
 int			char_to_uint64(const char *str);
 void		*ft_calloc(size_t count, size_t size);
-void		*post_and_return(sem_t *sem, void *val);
 bool		wait_terminate_philo(t_meta *meta);
 
 /*------------- OUTPUT.C -------------*/
@@ -28,5 +27,8 @@ void		output(sem_t *print_sem, t_report report);
 
 /*------------- CLEAR.C -------------*/
 void		clear_all_asset(t_meta *meta);
+
+/*--------- MAKE_PHILO_SEM_NAME.C --------*/
+char		*make_philo_sem_name(int n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:14:07 by jgo               #+#    #+#             */
-/*   Updated: 2023/04/01 11:23:22 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 19:26:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,28 @@
 #include "def.h"
 #include "utils.h"
 #include "state_control.h"
-
-static void kill_proc_arr(t_philo *philo)
-{
-	int	i;
-
-	i = 0;
-	while (i < philo->args->num_of_philo)
-	{
-		kill(philo->pids[i], SIGINT);
-		i++;
-	}
-}
+#include "sem.h"
 
 static bool	check_dead(t_philo *philo)
 {
-	uint64_t	cur_time;
 	uint64_t	elapsed_time;
-	bool		terminate;
 
-	terminate = false;
-	while (!terminate)
+	while (true)
 	{
-		cur_time = get_micro_time();
-		elapsed_time = cur_time - philo->last_meal;
+		sem_wait(philo->last_meal_sem);
+		elapsed_time = get_micro_time() - philo->last_meal;
+		sem_post(philo->last_meal_sem);
 		if (elapsed_time > philo->args->time_to_die)
 		{
 			sem_wait(philo->print_sem);
 			if (philo->args->time_to_die)
-				printf(RED"%llu %d died\n"RESET, elapsed_time / 1000, philo->idx + 1);
+				printf(RED"%llu %d died\n"RESET, \
+					elapsed_time / 1000, philo->idx + 1);
 			else
-				printf(RED"%llu %d died\n"RESET, philo->args->time_to_die, philo->idx + 1);
-			kill_proc_arr(philo);
+				printf(RED"%llu %d died\n"RESET, \
+					philo->args->time_to_die, philo->idx + 1);
+			close_and_unlink_sem(philo->last_meal_sem, philo->philo_sem_name);
+			free(philo->philo_sem_name);
 			sem_post(philo->terminate_sem);
 			exit(EXIT_SUCCESS);
 		}
@@ -56,7 +46,7 @@ static bool	check_dead(t_philo *philo)
 
 void	*watch_philo_lives(void *arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = arg;
 	if (get_proc_state())
