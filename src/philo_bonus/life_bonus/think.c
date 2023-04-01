@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 09:48:28 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/31 15:23:36 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/02 08:17:00 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@
 
 void	philo_think(t_philo *philo)
 {
-	output(philo->print_sem, write_report(philo, PHILO_THINK));
+	output(philo->meta_sem->print_sem, write_report(philo, PHILO_THINK));
 }

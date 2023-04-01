@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/04/01 19:29:17 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/02 08:34:16 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ bool	wait_terminate_philo(t_meta *meta)
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
-		kill(meta->table.pids[i], SIGINT);
+		kill(meta->table.pids[i], SIGKILL);
 		waitpid(meta->table.pids[i], NULL, WNOHANG);
 		i++;
 	}

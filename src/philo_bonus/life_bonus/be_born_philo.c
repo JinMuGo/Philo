@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:17:15 by jgo               #+#    #+#             */
-/*   Updated: 2023/04/01 21:19:57 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/02 08:54:05 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@ static void	*meal_counter(void *arg)
 			sem_post(meta->sem.terminate_sem);
 			break ;
 		}
-		if (++cnt == meta->args.num_of_must_eat)
+		if (++cnt == meta->args.num_of_philo)
 		{
 			if (sem_wait(meta->sem.print_sem) == SC_ERR)
 				sem_post(meta->sem.terminate_sem);
 			printf(CYAN"all philo complete dining!\n"RESET);
 			sem_post(meta->sem.terminate_sem);
 			break ;
-			// 이때 종료 되면 philo의 philo_sem_name이 leaks이 나지 않을까?
 		}
 	}
 	return (NULL);
@@ -74,15 +73,15 @@ bool	be_born_philo(t_meta *meta)
 		return (false);
 	if (meta->args.num_of_must_eat != -1)
 	{
-		if (pthread_create(&meta->meal_counter, NULL, meal_counter, meta) ||
+		if (pthread_create(&meta->meal_counter, NULL, meal_counter, meta) || \
 			pthread_detach(meta->meal_counter))
-		return (prt_err(ERR_THD_CREATE, THD_ERROR));
+			return (prt_err(ERR_THD_CREATE, THD_ERROR));
 	}
 	is_err = create_philo(meta);
 	if (is_err <= 0)
 	{
 		while (++is_err <= 0)
-			kill(meta->table.pids[-is_err], SIGINT);
+			kill(meta->table.pids[-is_err], SIGKILL);
 		return ((prt_err(ERR_PROC_CREATE, PROC_ERROR)));
 	}
 	return (true);

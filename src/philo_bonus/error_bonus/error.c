@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:52:05 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/29 10:55:25 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/02 08:49:54 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ bool	prt_err(t_err err_num, t_proc_state state)
 		msg = ERR_INIT_MUTEX_MSG;
 	else if (err_num == ERR_THD_CREATE)
 		msg = ERR_THD_CREATE_MSG;
-	else if (err_num == ERR_ENQUEUE)
-		msg = ERR_ENQUEUE_MSG;
+	else if (err_num == ERR_SEM_OPEN)
+		msg = ERR_SEM_OPEN_MSG;
+	else if (err_num == ERR_GET_TIME)
+		msg = ERR_GET_TIME_MSG;
 	printf("%s\n", msg);
 	set_proc_state(state);
 	if (err_num == ERR_ARGS)

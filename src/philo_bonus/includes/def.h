@@ -43,16 +43,13 @@ struct s_report
 struct s_philo
 {
 	int				idx;
-	pid_t			*pids;
 	t_args			*args;
 	t_report		report;
 	int				eat_cnt;
 	uint64_t		last_meal;
 	pthread_t		moniter_thd;
+	t_meta_sem		*meta_sem;
 	sem_t			*fork_sem;
-	sem_t			*print_sem;
-	sem_t			*counter_sem;
-	sem_t			*terminate_sem;
 	sem_t			*last_meal_sem;
 	char			*philo_sem_name;
 };

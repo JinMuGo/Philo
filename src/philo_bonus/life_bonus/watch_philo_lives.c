@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:14:07 by jgo               #+#    #+#             */
-/*   Updated: 2023/04/01 19:26:33 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/02 08:53:33 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,37 @@
 #include "state_control.h"
 #include "sem.h"
 
+static void	print_dead_msg(t_philo *philo, const uint64_t elapsed_time)
+{
+	if (philo->args->time_to_die)
+		printf(RED"%llu %d died\n"RESET, \
+			elapsed_time / 1000, philo->idx + 1);
+	else
+		printf(RED"%llu %d died\n"RESET, \
+			philo->args->time_to_die, philo->idx + 1);
+}
+
 static bool	check_dead(t_philo *philo)
 {
 	uint64_t	elapsed_time;
+	uint64_t	cur_time;
 
+	usleep(philo->args->num_of_philo * 100);
 	while (true)
 	{
 		sem_wait(philo->last_meal_sem);
-		elapsed_time = get_micro_time() - philo->last_meal;
+		cur_time = get_micro_time();
+		elapsed_time = cur_time - philo->last_meal;
 		sem_post(philo->last_meal_sem);
 		if (elapsed_time > philo->args->time_to_die)
 		{
-			sem_wait(philo->print_sem);
-			if (philo->args->time_to_die)
-				printf(RED"%llu %d died\n"RESET, \
-					elapsed_time / 1000, philo->idx + 1);
-			else
-				printf(RED"%llu %d died\n"RESET, \
-					philo->args->time_to_die, philo->idx + 1);
+			sem_wait(philo->meta_sem->print_sem);
+			print_dead_msg(philo, elapsed_time);
 			close_and_unlink_sem(philo->last_meal_sem, philo->philo_sem_name);
 			free(philo->philo_sem_name);
-			sem_post(philo->terminate_sem);
-			exit(EXIT_SUCCESS);
+			sem_post(philo->meta_sem->terminate_sem);
+			break ;
 		}
-		usleep(philo->args->num_of_philo * 100);
 	}
 	exit (EXIT_SUCCESS);
 }

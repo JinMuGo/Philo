@@ -42,9 +42,11 @@
 # define ERR_ARGS_MSG			"❌ Incorrect number of arguments"
 # define ERR_INVALID_ARGS_MSG	"❌ Invalid arguments"
 # define ERR_ALLOC_MSG			"❌ Memory allocation failed"
-# define ERR_INIT_PHILO_MSG		"❌ Error occured during philosopher initialized"
+# define ERR_INIT_PHILO_MSG		"❌ Error occured during philo initialized"
 # define ERR_INIT_MUTEX_MSG		"❌ Error occured during mutex initialized"
 # define ERR_THD_CREATE_MSG		"❌ Error occured during pthread create"
-# define ERR_ENQUEUE_MSG		"❌ The queue is full"
+# define ERR_PROC_MSG			"❌ Error occured during process create"
+# define ERR_SEM_OPEN_MSG		"❌ Error occured during named semaphore open"
+# define ERR_GET_TIME_MSG		"❌ Error occured during gettime system call"
 
 #endif
