@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:16:30 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/30 18:04:04 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 11:00:11 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,28 +64,16 @@ void	*post_and_return(sem_t *sem, void *val)
 bool	wait_terminate_philo(t_meta *meta)
 {
 	int	i;
-	int	exit_status;
 
 	if (get_proc_state())
 		return (false);
 	i = 0;
 	while (i < meta->args.num_of_philo)
 	{
-		waitpid(meta->table.pids[i], &exit_status, 0);
-		i++;
-	}
-	i = 0;
-	while (i < meta->args.num_of_philo)
-	{
 		kill(meta->table.pids[i], SIGINT);
+		waitpid(meta->table.pids[i], NULL, WNOHANG);
 		i++;
 	}
 	printf(GREEN"Simulation End\n"RESET);
 	return (true);
-}
-
-void	waiting_for_the_start(t_philo *philo)
-{
-	sem_wait(philo->start_sem);
-	sem_post(philo->start_sem);
 }

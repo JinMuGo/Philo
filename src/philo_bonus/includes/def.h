@@ -62,16 +62,16 @@ struct s_philo
 	int				idx;
 	t_args			*args;
 	t_report		report;
-	int				eat_cnt; // count sem (main or self)
-	uint64_t		last_meal; // count sem (main or self)
-	bool			terminate; // binary sem
-	sem_t			*fork_sem; // count sem의 pointer // 해당 세마포의 개수가 2 이상일 때만 잡게 하자.
-	sem_t			*start_sem; // binary sem
+	int				eat_cnt;
+	uint64_t		last_meal;
+	sem_t			*fork_sem;
 	sem_t			*print_sem;
 	pthread_t		moniter_thd;
+	sem_t			*counter_sem;
 	sem_t			*life_sem;
-	sem_t			*philo_sem;
+	sem_t			*terminate_sem;
 	pid_t			*pids;
+
 };
 
 struct s_args
@@ -93,8 +93,9 @@ struct s_table
 
 struct s_meta_sem
 {
-	sem_t			*start_sem; // bi
-	sem_t			*print_sem; // bi //한번에 한명씩 순서대로 출력해야하기 때문에. 여러명이 출력할 수 있다면 순서가 꼬일 수 있다. 
+	sem_t	*counter_sem; // bi
+	sem_t	*print_sem; // bi //한번에 한명씩 순서대로 출력해야하기 때문에. 여러명이 출력할 수 있다면 순서가 꼬일 수 있다. 
+	sem_t	*terminate_sem;
 };
 
 struct s_meta
@@ -102,6 +103,7 @@ struct s_meta
 	t_args			args;
 	t_table			table;
 	t_meta_sem		sem;
+	pthread_t		meal_counter;
 };
 
 #endif

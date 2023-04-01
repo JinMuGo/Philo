@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:36:58 by jgo               #+#    #+#             */
-/*   Updated: 2023/04/01 09:11:04 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 11:22:02 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@
 
 bool set_meta_sem(t_meta_sem *sem)
 {
-	close_and_unlink_sem(sem->start_sem, START_SEM_NAME);
+	close_and_unlink_sem(sem->counter_sem, COUNTER_SEM_NAME);
 	close_and_unlink_sem(sem->print_sem, PRINT_SEM_NAME);
-	sem->start_sem = sem_open(START_SEM_NAME, O_CREAT, 0644, 1);
-	if (sem->start_sem == SEM_FAILED)
+	close_and_unlink_sem(sem->terminate_sem, TERM_SEM_NAME);
+	sem->counter_sem = sem_open(COUNTER_SEM_NAME, O_CREAT, S_IRWXU, 0);
+	if (sem->counter_sem == SEM_FAILED)
 		return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
-	sem->print_sem  = sem_open(PRINT_SEM_NAME, O_CREAT, 0644, 1);
+	sem->terminate_sem = sem_open(TERM_SEM_NAME, O_CREAT, S_IRWXU, 0);
+	if (sem->terminate_sem == SEM_FAILED)
+		return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
+	sem->print_sem  = sem_open(PRINT_SEM_NAME, O_CREAT, S_IRWXU, 1);
 	if (sem->print_sem  == SEM_FAILED)
 		return (prt_err(ERR_INIT_MUTEX, SET_ERROR));
 	return (true);

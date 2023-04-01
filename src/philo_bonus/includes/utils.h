@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:33:47 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/30 16:46:47 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 10:59:24 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int			char_to_uint64(const char *str);
 void		*ft_calloc(size_t count, size_t size);
 void		*post_and_return(sem_t *sem, void *val);
 bool		wait_terminate_philo(t_meta *meta);
-void		waiting_for_the_start(t_philo *philo);
 
 /*------------- OUTPUT.C -------------*/
 void		output(sem_t *print_sem, t_report report);

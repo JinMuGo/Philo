@@ -16,9 +16,9 @@
 # define FT 42
 
 # define FORK_SEM_NAME "/fork"
-# define START_SEM_NAME "/start"
+# define COUNTER_SEM_NAME "/counter"
 # define PRINT_SEM_NAME "/print"
-# define LIFE_SEM_NAME "/life"
+# define TERM_SEM_NAME "/terminate"
 
 /*--------------  COLOR --------------*/
 # define BOLD					"\e[1m"

@@ -32,6 +32,7 @@
         "const.h": "c",
         "exception": "c",
         "enum.h": "c",
-        "__locale": "c"
+        "__locale": "c",
+        "_xlocale.h": "c"
     }
 }

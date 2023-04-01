@@ -6,7 +6,7 @@
 /*   By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:14:07 by jgo               #+#    #+#             */
-/*   Updated: 2023/03/31 22:40:14 by jgo              ###   ########.fr       */
+/*   Updated: 2023/04/01 11:23:22 by jgo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static bool	check_dead(t_philo *philo)
 			else
 				printf(RED"%llu %d died\n"RESET, philo->args->time_to_die, philo->idx + 1);
 			kill_proc_arr(philo);
+			sem_post(philo->terminate_sem);
 			exit(EXIT_SUCCESS);
 		}
 		usleep(philo->args->num_of_philo * 100);
