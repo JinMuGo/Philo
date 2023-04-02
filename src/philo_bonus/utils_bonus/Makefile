@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/04/01 17:58:20 by jgo              ###   ########.fr        #
+#    Updated: 2023/04/02 19:58:44 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,13 @@ endif
 include $(TOPDIR)/config/Rules.mk
 include $(TOPDIR)/config/Color_rules.mk
 
-SRCS =	sem.c \
-		output.c \
-		time.c \
-		utils.c \
-		clear.c \
-		make_philo_sem_name.c \
-		state_control.c
+SRCS =	sem_bonus.c \
+		output_bonus.c \
+		time_bonus.c \
+		utils_bonus.c \
+		clear_bonus.c \
+		make_philo_sem_name_bonus.c \
+		state_control_bonus.c
 
 NAME = utils_bonus.a
 

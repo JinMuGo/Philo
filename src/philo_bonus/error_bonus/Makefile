@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/30 15:59:15 by jgo              ###   ########.fr        #
+#    Updated: 2023/04/02 19:58:22 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ endif
 include $(TOPDIR)/config/Rules.mk
 include $(TOPDIR)/config/Color_rules.mk
 
-SRCS = error.c
+SRCS = error_bonus.c
 
 NAME = error_bonus.a
 

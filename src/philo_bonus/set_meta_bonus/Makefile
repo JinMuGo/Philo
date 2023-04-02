@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/31 15:24:23 by jgo              ###   ########.fr        #
+#    Updated: 2023/04/02 19:58:55 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ endif
 include $(TOPDIR)/config/Rules.mk
 include $(TOPDIR)/config/Color_rules.mk
 
-SRCS = set_meta.c \
-		set_args.c \
-		set_table.c \
-		set_meta_sem.c
+SRCS = set_meta_bonus.c \
+		set_args_bonus.c \
+		set_table_bonus.c \
+		set_meta_sem_bonus.c
 
 NAME = set_meta_bonus.a
 

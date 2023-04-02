@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/03/30 16:27:14 by jgo              ###   ########.fr        #
+#    Updated: 2023/04/02 19:59:03 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,13 @@ endif
 include $(TOPDIR)/config/Rules.mk
 include $(TOPDIR)/config/Color_rules.mk
 
-SRCS = 	watch_philo_lives.c \
-		be_born_philo.c \
-		begin_life.c \
-		eat.c \
-		fork.c \
-		sleep.c \
-		think.c
+SRCS = 	watch_philo_lives_bonus.c \
+		be_born_philo_bonus.c \
+		begin_life_bonus.c \
+		eat_bonus.c \
+		fork_bonus.c \
+		sleep_bonus.c \
+		think_bonus.c
 
 NAME = life_bonus.a
 
