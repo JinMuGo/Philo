@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/05 14:02:20 by jgo               #+#    #+#              #
-#    Updated: 2023/04/02 08:29:09 by jgo              ###   ########.fr        #
+#    Updated: 2023/04/02 19:32:42 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ BONUS_LIB_DIR = src/$(BONUS_DIR)/lib
 ARFLAGS = rcs
 CFLAGS = -Wall -Wextra -Werror -MMD -MP
 
-CPPFLAGS = -I$(TOPDIR)/includes $(if $(findstring bonus, $(MAKECMDGOALS)), -I$(TOPDIR)/src/$(BONUS_DIR)/includes, -I$(TOPDIR)/src/$(MANDATORY_DIR)/includes)
+CPPFLAGS = $(if $(findstring bonus, $(MAKECMDGOALS)), -I$(TOPDIR)/src/$(BONUS_DIR)/includes, -I$(TOPDIR)/src/$(MANDATORY_DIR)/includes)
 LDFLAGS = $(if $(findstring bonus, $(MAKECMDGOALS)), -lpthread, -lpthread) 
 
 # verbose
