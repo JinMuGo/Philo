@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 13:42:33 by jgo               #+#    #+#              #
-#    Updated: 2023/05/14 09:50:28 by jgo              ###   ########.fr        #
+#    Updated: 2023/04/02 19:22:00 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ all :
 
 clean fclean :
 	$(MAKE) TOPDIR=$(TOPDIR) -C $(MANDATORY_DIR) $@
-# $(MAKE) TOPDIR=$(TOPDIR) -C $(BONUS_DIR) $@
+	$(MAKE) TOPDIR=$(TOPDIR) -C $(BONUS_DIR) $@
 
 re : fclean
 	$(MAKE) TOPDIR=$(TOPDIR) -C $(MANDATORY_DIR)

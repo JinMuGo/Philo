@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:05:59 by jgo               #+#    #+#              #
-#    Updated: 2023/04/02 20:00:23 by jgo              ###   ########.fr        #
+#    Updated: 2023/04/02 20:00:10 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,27 +14,28 @@ ifndef TOPDIR
 		TOPDIR = $(abspath ../../)
 endif
 
-include $(TOPDIR)/make_config/Rules.mk
-include $(TOPDIR)/make_config/color_rules.mk
+include $(TOPDIR)/config/Rules.mk
+include $(TOPDIR)/config/Color_rules.mk
 
-NAME = $(PROJECT_NAME)
+NAME = $(BONUS_NAME)
 
-DIRS = utils error set_meta life clerk
+DIRS =	utils_bonus \
+		error_bonus \
+		life_bonus \
+		set_meta_bonus
+
 LIBS = $(addsuffix .a, $(addprefix lib/, $(DIRS)))
 
-HEADS =	def.h \
- 		const.h \
-		enum.h \
-		error.h \
-		life.h \
-		mutex.h \
-		philo.h \
-		queue.h \
-		set_meta.h \
-		state_control.h \
-		utils.h
+HEADS =	def_bonus.h \
+ 		const_bonus.h \
+		enum_bonus.h \
+		error_bonus.h \
+		philo_bonus.h \
+		utils_bonus.h \
+		state_control_bonus.h \
+		set_meta_bonus.h
 
-SRCS = philo.c
+SRCS = philo_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 DEPS = $(SRCS:.c=.d)
@@ -47,7 +48,7 @@ all bonus :
 	$(Q)$(call color_printf,$(GREEN),$(NAME),✨ compiled!)
 
 $(NAME): $(OBJS) $(LIBS)
-# $(MAKE) files="$(HEADS)" src_dir=`pwd`/includes dst_dir=$(TOPDIR)/includes link_files
+	$(MAKE) files="$(HEADS)" src_dir=`pwd`/includes dst_dir=$(TOPDIR)/includes link_files
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 	$(MAKE) files="$(NAME)" src_dir=`pwd` dst_dir=$(TOPDIR) link_files
 	
