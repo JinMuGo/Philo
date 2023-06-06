@@ -6,12 +6,12 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 20:10:46 by jgo               #+#    #+#              #
-#    Updated: 2023/05/14 09:50:28 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/06 15:33:31 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-include ./make_config/Rules.mk
-include ./make_config/color_rules.mk
+include ./make_config/src/Rules.mk
+include ./make_config/com/ColorRules.mk
 
 all bonus clean fclean re:
 	$(MAKE) TOPDIR=`pwd` -C src $@

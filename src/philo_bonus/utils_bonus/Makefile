@@ -6,7 +6,7 @@
 #    By: jgo <jgo@student.42seoul.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/05 08:31:25 by jgo               #+#    #+#              #
-#    Updated: 2023/04/02 19:58:44 by jgo              ###   ########.fr        #
+#    Updated: 2023/06/06 15:37:31 by jgo              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ ifndef TOPDIR
 		TOPDIR = $(abspath ../../../)
 endif
 
-include $(TOPDIR)/config/Rules.mk
-include $(TOPDIR)/config/Color_rules.mk
+include $(TOPDIR)/make_config/src/Rules.mk
+include $(TOPDIR)/make_config/com/ColorRules.mk
 
 SRCS =	sem_bonus.c \
 		output_bonus.c \
@@ -31,26 +31,4 @@ OBJS = $(SRCS:.c=.o)
 DEPS = $(SRCS:.c=.d)
 -include $(DEPS)
 
-all bonus : 
-	$(Q)$(call color_printf,$(CYAN),$(NAME),🎯 starting compile $(NAME))
-	$(Q)$(MAKE) $(NAME)
-	$(Q)$(call color_printf,$(GREEN),$(NAME),🔰 done!)
-
-$(NAME): $(OBJS)
-	$(Q)$(call color_printf,$(GREEN),$(NAME),📚 archive object)
-	$(AR) $(ARFLAGS) $@ $^
-	$(Q)$(MAKE) files="$(NAME)" src_dir=`pwd` dst_dir=$(TOPDIR)/$(BONUS_LIB_DIR) link_files
-	
-clean:
-	$(Q)$(MAKE) files="$(NAME)" src_dir=`pwd` dst_dir=$(TOPDIR)/$(BONUS_LIB_DIR) unlink_files
-	$(Q)$(call color_printf,$(RED),$(NAME),🗑️  remove Objects && Dependency file)
-	$(RM) $(OBJS) $(DEPS)
-
-fclean: clean
-		$(Q)$(call color_printf,$(RED),$(NAME),🗑️  remove $(NAME))
-		$(RM) $(NAME)
-	
-re : fclean
-	$(MAKE) all
-
-.PHONY: all clean fclean re bonus
+include $(TOPDIR)/make_config/src/BonusSubLibsRecipes.mk
